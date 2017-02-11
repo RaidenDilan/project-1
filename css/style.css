@@ -5,8 +5,8 @@ html, * {
 }
 
 body {
-  background-image: 
   background-color: rgb(0, 182, 255);
+  text-align: center;
 }
 
 li {
@@ -14,7 +14,7 @@ li {
   border: 1px solid black;
   list-style: none;
   float: left;
-  margin: 1px 1px;
+  margin: 0 auto;
   padding: 50px;
   text-align: center;
   position: relative;
@@ -28,7 +28,6 @@ li {
 
 ul {
   margin: 200px 450px;
-
   /*position: relative;*/
   /*background-color: red;*/
   /*color: black;*/
@@ -36,6 +35,7 @@ ul {
 
 main {
   margin: 0;
+  display: inline-block;
 }
 
 div {
@@ -51,4 +51,59 @@ div {
   position: relative;
   bottom: 23px;
   right: 24px;
+  border: 1px solid black;
+}
+
+button.reset {
+  /*display: inline-block;*/
+  /*margin: auto;*/
+  padding: 10px 10px;
+  border-radius: 20px;
+  background-color: white;
+  margin-top: 30px;
+  margin-right: 40px;
+  margin-left: 5px;
+  /*text-align: center;*/
+  border: 1px solid black;
+  position: relative;
+  color: red;
+  font-weight: bold;
+  outline: none;
+}
+button.play {
+  /*display: inline-block;*/
+  padding: 10px 20px;
+  border-radius: 20px;
+  background-color: white;
+  margin-top: 30px;
+  margin-left: 10px;
+  margin-right: 5px;
+  /*text-align: center;*/
+  border: 1px solid black;
+  position: relative;
+  color: red;
+  font-weight: bold;
+  outline: none;
+}
+
+footer {
+  /*margin-top: 10px;*/
+  /*margin-bottom: 10px;*/
+  text-align: center;
+  /*position: relative;*/
+  display: block;
+}
+
+img {
+  position: absolute;
+  margin: 0 auto;
+  display: block;
+}
+
+@media only screen and (max-width: 960px) {
+
+}
+
+@media only screen and (max-width: 640px) {
+
 }
