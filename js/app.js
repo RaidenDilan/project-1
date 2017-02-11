@@ -8,16 +8,15 @@ $(() => {
 // Create the walls within the board function
 
 // Create the direction key function
-  const $control = $('control');
+  // const $move = $('.control');
 
-  $control.keypress(function() {
-    console.log( 'Handler for .keypress() called.' );
-  });
+// move the ball
 
 // create the play button
   const $play = $('button.play');
 
   $play.on('click', () => {
+    $ball.addClass('circle');
     // $play.html('started');
     console.log('Started');
   });
@@ -26,6 +25,7 @@ $(() => {
   const $reset = $('button.reset');
 
   $reset.on('click', () => {
+    $ball.removeClass('circle');
     // $ball.prepend('');
     // $reset.html('started');
     console.log('Restarted');
