@@ -100,6 +100,13 @@ img {
   display: block;
 }
 
+/*#sonic {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  background-color: none;
+}*/
+
 @media only screen and (max-width: 960px) {
 
 }

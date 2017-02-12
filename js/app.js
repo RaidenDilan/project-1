@@ -8,7 +8,38 @@ $(() => {
 // Create the walls within the board function
 
 // Create the direction key function
-  // const $move = $('.control');
+  setInterval(moveBall, 20);
+  const keys = {};
+
+  $(document).keydown(function(e) {
+    keys[e.keyCode] = true;
+  });
+
+  $(document).keyup(function(e) {
+    delete keys[e.keyCode];
+  });
+
+  function moveBall() {
+    for (var direction in keys) {
+      if (!keys.hasOwnProperty(direction)) continue;
+      if (direction === 37) {
+        $('.circle').animate({left: '-=5'}, 0);
+        console.log('left');
+      }
+      if (direction === 38) {
+        $('.circle').animate({top: '-=5'}, 0);
+        console.log('top');
+      }
+      if (direction === 39) {
+        $('.circle').animate({right: '+=5'}, 0);
+        console.log('right');
+      }
+      if (direction === 40) {
+        $('.circle').animate({down: '+=5'}, 0);
+        console.log('down');
+      }
+    }
+  }
 
 // move the ball
 
@@ -25,7 +56,7 @@ $(() => {
   const $reset = $('button.reset');
 
   $reset.on('click', () => {
-    $ball.removeClass('circle');
+    // $ball.removeClass('circle');
     // $ball.prepend('');
     // $reset.html('started');
     console.log('Restarted');
@@ -35,7 +66,7 @@ $(() => {
   const $ball = $('.circle');
 
   $ball.on('click', () => {
-    $ball.appendTo('.destination');
+    // $ball.appendTo('.destination');
     console.log('Ball moved');
   });
 
@@ -45,13 +76,10 @@ $(() => {
 
 // Create a 'You Won!' alert/message when the player reaches the finish destination.
 
-// Cross browser compatibility, if i know how to this.
-
 // Create different difficulties
 
 // Create hide board function
 
-// CONSOLE LOG EVERYTHING!!!
-// YES! Console everthing
+// CONSOLE LOG EVERYTHING!!! // YES! Console everthing
 
 });
