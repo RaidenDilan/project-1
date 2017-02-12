@@ -81,7 +81,7 @@ div {
   height: 50px;
   background-color: red;
   border-radius: 25px;
-  position: relative;
+  position: absolute;
   bottom: 23px;
   right: 24px;
   border: 1px solid black;
