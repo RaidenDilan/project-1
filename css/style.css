@@ -76,6 +76,19 @@ div {
   /*color: black;*/
 }
 
+.result {
+  padding: 20px 40px;
+  border: 2px solid black;
+  margin: 400px 588px;
+  background-color: white;
+  color: black;
+  /*float: left;*/
+  /*width: 40px;*/
+  /*height: 10px;*/
+  position: absolute;
+  display: inline;
+}
+
 .circle {
   width: 50px;
   height: 50px;
@@ -128,6 +141,8 @@ footer {
 }
 
 img {
+  max-width: 1190px;
+  /*max-height: 1190px;*/
   position: absolute;
   margin: 0 auto;
   display: block;
@@ -140,20 +155,72 @@ h1 {
   border: 5px solid red;
   padding: 10px;
   /*display: inline-block;*/
-  margin: 5px 5px;
+  /*margin: 2px 2px;*/
   text-align: center;
   color: white;
   font-weight: bold;
 }
 
+.edge1 {
+  border: 2px solid black;
+  /*border-bottom: none;*/
+  /*border-right: none;*/
+}
 
-/*#sonic {
-  position: absolute;
-  width: 60px;
-  height: 60px;
-  background-color: none;
-}*/
+.edge2 {
+  border: 2px solid black;
+  /*border-bottom: none;*/
+  /*border-left: none;*/
+  /*border-right: none;*/
+}
 
+.edge3 {
+  border: 2px solid black;
+  /*border-bottom: none;*/
+  /*border-left: none;*/
+
+}
+
+.edge4 {
+  border: 2px solid black;
+  /*border-top: none;*/
+  /*border-bottom: none;*/
+  /*border-right: none;*/
+}
+
+.edge5 {
+  border: 2px solid black;
+  /*border-top: none;*/
+  /*border-bottom: none;*/
+  /*border-right: none;*/
+  /*border-left: none;*/
+}
+
+.edge6 {
+  border: 2px solid black;
+  /*border-top: none;*/
+  /*border-bottom: none;*/
+  /*border-left: none;*/
+}
+
+.edge7 {
+  border: 2px solid black;
+  /*border-top: none;*/
+  /*border-right: none;*/
+}
+
+.edge8 {
+  border: 2px solid black;
+  /*border-top: none;*/
+  /*border-right: none;*/
+  /*border-left: none;*/
+}
+
+.edge9 {
+  border: 2px solid black;
+  /*border-top: none;*/
+  /*border-left: none;*/
+}
 @media only screen and (max-width: 960px) {
 
 }
