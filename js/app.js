@@ -7,8 +7,51 @@ $(() => {
 
 // Create the walls within the board function
 
+// add the timer
+  const $input = $('input');
+  // const $button = $('.submit');
+  const $timerScreen = $('.timer');
+  const $display = $('.display');
+  const $startBtn = $('.play');
+  let timeRemaining = 3;
+  let timerId = null;
+
+  function startStopTimer() {
+// show button input
+    showInput();
+
+// starts the timer
+    timerId = setInterval(() => {
+      timeRemaining--;
+      $timerScreen.text(timeRemaining);
+      console.log('Set Interval Working!');
+
+      // stops the timer
+      if(timeRemaining === 0) {
+        clearInterval(timerId);
+        $display.html('Game Over');
+        $play.html('Play Again');
+        // $timer.addClass('ringing');
+        console.log('Clear Interval Working!');
+      }
+    }, 1000);
+// timerIsRunning = true;
+  }
+// hides input box
+  function hideInput() {
+    $input.hide();
+  }
+  hideInput();
+
+// shows input box
+  function showInput() {
+    $input.show();
+  }
+// runs the GO! button
+  $startBtn.on('click', startStopTimer);
+
 // Create the direction key function
-  setInterval(moveBall, 20);
+  setInterval(moveBall, 50); //50 marks the speed of the ball
   const keys = {};
 
   $(document).keydown(function(e) {
@@ -22,21 +65,21 @@ $(() => {
   function moveBall() {
     for (var direction in keys) {
       if (!keys.hasOwnProperty(direction)) continue;
-      if (direction === 37) {
-        $('.circle').animate({left: '-=5'}, 0);
-        console.log('left');
+      if (direction == 37) {
+        $ball.animate({left: '-=5'}, 0); //left works fine
+        console.log('Left');
       }
-      if (direction === 38) {
-        $('.circle').animate({top: '-=5'}, 0);
-        console.log('top');
+      if (direction == 38) {
+        $ball.animate({top: '-=5'}, 0); //top works fine
+        console.log('Top');
       }
-      if (direction === 39) {
-        $('.circle').animate({right: '+=5'}, 0);
-        console.log('right');
+      if (direction == 39) {
+        $ball.animate({right: '+=5'}, 0); //right still not working
+        console.log('Right');
       }
-      if (direction === 40) {
-        $('.circle').animate({down: '+=5'}, 0);
-        console.log('down');
+      if (direction == 40) {
+        $ball.animate({down: '+=5'}, 0); //down stil not working
+        console.log('Down');
       }
     }
   }
