@@ -1,31 +1,35 @@
 console.log('JS loaded!');
 $(() => {
 
-// Show instructions when the key 'I' is pressed and held /////////////////////
+// ----------Show instructions when the key 'I' is pressed and held ---------//
 
-// Reset the board if the player runs into a wall within the board ////////////
+// -----Reset the board if the player runs into a wall within the board -----//
 
-// Create the walls within the board function//////////////////////////////////
+// -------------- Create the walls within the board function ----------------//
 
-// OBJECTS ////////////////////////////////////////////////////////////////////
-  const $timerScreen = $('.timer');
+// ------------------------------- OBJECTS ----------------------------------//
+  const $timer = $('.timer');
   const $display = $('.display');
   const $startBtn = $('.play');
-  let timeRemaining = 10;
+  const $result = $('.result');
+  // const $movement = $('.control');
+  let time = 3;
   let timerId = null;
 
   function startTimer() {
 // Toggles the MAZE  board
     toggleBoard();
+    $timer.addClass('active');
 
 // Starts the timer
     timerId = setInterval(() => {
-      timeRemaining--;
-      $timerScreen.text(timeRemaining);
+      time--;
+      // $reset();
+      $timer.html(time);
       console.log('Set Interval Working!');
 
 // Stops the timer
-      if(timeRemaining === 0) {
+      if(time === 0) {
         clearInterval(timerId);
         $display.html('Game Over');
         $play.html('Play Again');
@@ -36,39 +40,39 @@ $(() => {
     }, 1000); // Stops the timer after 10 secons
 // timerIsRunning = true;
   }
-// Runs the PLAY button and timer
+// ------------------------ Runs the PLAY button and timer ------------------//
   $startBtn.on('click', startTimer);
 
-// Move the BALL //////////////////////////////////////////////////////////////
+// ------------------------------ Move the BALL -----------------------------//
   const $circle = $('.circle'); //the circle object
 
   $(document).keydown(function(e) {
     switch (e.which) {
       case 37:
         $circle.stop().css({
-          left: '-=10' //change number to set the amount of pixels the ball moves
+          left: '-=100' //change number to set the amount of pixels the ball moves
         }); //left arrow key
         break;
       case 38:
         $circle.stop().css({
-          top: '-=10' //change number to set the amount of pixels the ball moves
+          top: '-=100' //change number to set the amount of pixels the ball moves
         }); //up arrow key
         break;
       case 39:
         $circle.stop().css({
-          left: '+=10' //change number to set the amount of pixels the ball moves
+          left: '+=100' //change number to set the amount of pixels the ball moves
         }); //right arrow key
         break;
       case 40:
         $circle.stop().css({
-          top: '+=10' //change number to set the amount of pixels the ball moves
+          top: '+=100' //change number to set the amount of pixels the ball moves
         }); //bottom arrow key
         break;
     }
     console.log('Movement Works');
   });
 
-// The play button ////////////////////////////////////////////////////////////
+// --------------------------- The play button ------------------------------//
   const $play = $('button.play');
 
   $play.on('click', () => {
@@ -80,16 +84,19 @@ $(() => {
     console.log('Started');
   });
 
-// The reset button ///////////////////////////////////////////////////////////
+// --------------------------- The reset button ------------------------------//
   const $reset = $('button.reset');
 
   $reset.on('click', () => {
-    $('.result').text(''); // dispays win or lose message INCOMPLETE
-    // $startTimer.html(timeRemaining); // FIX THIS PART
+    time = 3;
+    $timer.html(time);
+    $result.text(''); // dispays win or lose message INCOMPLETE
+    // $startTimer.html(time); // FIX THIS PART
+    $timer.removeClass('active');
     console.log('Restarted');
   });
 
-// The BALL function on CLICK /////////////////////////////////////////////////
+// ------------------------ The BALL function on CLICK -----------------------//
   const $ball = $('.circle');
 
   $ball.on('click', () => {
@@ -97,16 +104,16 @@ $(() => {
     // $ball.appendTo('.destination');
   });
 
-// Block the edge so the player can't go through it ///////////////////////////
+// ------------ Block the edge so the player can't go through it ------------//
 
-// Create a 'You Won!' message when the player reaches destination ////////////
+// ---- Create a 'You Won!' message when the player reaches destination -----//
 
 
-// Create different difficulties //////////////////////////////////////////////
+// ------------------- Create different difficulties -------------------------//
 
-// Create hide board function /////////////////////////////////////////////////
+// ----------------------- Create hide board function ------------------------//
 
-// Hidding buttons and boards /////////////////////////////////////////////////
+// ----------------------- Hidding buttons and boards -----------------------//
   function toggleBoard() {
     $play.toggle();
   }

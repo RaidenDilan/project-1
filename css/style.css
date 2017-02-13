@@ -161,6 +161,11 @@ h1 {
   font-weight: bold;
 }
 
+.timer.active {
+  background-color: dodgerblue;
+  color: white;
+}
+
 .edge1 {
   border: 2px solid black;
   /*border-bottom: none;*/
