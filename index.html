@@ -21,30 +21,30 @@
 
         <p class="result"></p>
 
-        <ul>
-          <li class="wall edge1">
-            <div class="circle ball control"></div>
+        <ul class="board show hidden">
+          <li class="wall edge-top edge-left">
+            <div class="ball"></div>
           </li>
-          <li class="wall edge2"></li>
-          <li class="wall edge3"></li>
+          <li class="wall edge-top"></li>
+          <li class="wall edge-top edge-right"></li>
         </ul>
-        <ul>
-          <li class="wall edge4"></li>
+        <ul class="board show hidden">
+          <li class="wall edge-left"></li>
           <li class="wall edge5"></li>
-          <li class="wall edge6"></li>
+          <li class="wall edge-right"></li>
         </ul>
-        <ul>
-          <li class="wall edge7"></li>
-          <li class="wall edge8"></li>
-          <li class="wall edge9 destination"></li>
+        <ul class="board show hidden">
+          <li class="wall edge-left edge-bottom"></li>
+          <li class="wall edge-bottom"></li>
+          <li class="wall edge-right edge-bottom"></li>
         </ul>
-        <!-- <div class="score-board">
-        Score: <span class="score">0</span>
-      </div> -->
     </main>
     <footer>
       <button class="play">Start</button>
       <button class="reset">Restart</button>
+
+      <div class="score-board">Score: <span class="score">0</span>
+    </div>
     </footer>
   </body>
 </html>

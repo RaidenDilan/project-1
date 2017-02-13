@@ -1,120 +1,137 @@
 console.log('JS loaded!');
 $(() => {
 
-// ----------Show instructions when the key 'I' is pressed and held ---------//
+//----------- Show instructions when the key 'I' is pressed and held ---------//
 
-// -----Reset the board if the player runs into a wall within the board -----//
+//------ Reset the board if the player runs into a wall within the board -----//
 
-// -------------- Create the walls within the board function ----------------//
+// //------------------ Create the walls/edges of the board ---------------------//
+  const $cells = $('li');
 
-// ------------------------------- OBJECTS ----------------------------------//
+  $Ball(e) {
+    curIndex = 0;
+    $cells.eq(curIndex).removeClass('ball');
+    $cells.eq(curIndex).hasClass('ball');
+    $cells.eq(curIndex).addClass('ball');
+    switch (e.keyCode) {
+      $cells.removeClass('ball');
+      case 37:
+          curIndex: -=1 //left arrow key
+        break;
+      case 38:
+          curIndex: -=1 //up arrow key
+        break;
+      case 39:
+          curIndex: +=1 //right arrow key
+        break;
+      case 40:
+          curIndex: +=1 //bottom arrow key
+        break;
+    }
+  }
+//--------------------------------- OBJECTS ----------------------------------//
+  // const $circle = $('.circle');
+  // const $hideBoard = $('.hidden'); // hides board
+  // const $showBoard = $('.show'); // shows board
   const $timer = $('.timer');
   const $display = $('.display');
   const $startBtn = $('.play');
   const $result = $('.result');
-  // const $movement = $('.control');
+  const $reset = $('button.reset');
+  const $play = $('button.play');
+  const $ball = $('.ball');
   let time = 3;
   let timerId = null;
 
   function startTimer() {
-// Toggles the MAZE  board
+// Toggles the MAZE  board -- doesn't work yet
     toggleBoard();
+    // $showBoard(); //shows board
     $timer.addClass('active');
 
-// Starts the timer
+// --- Starts the timer --- //
     timerId = setInterval(() => {
       time--;
       // $reset();
       $timer.html(time);
       console.log('Set Interval Working!');
 
-// Stops the timer
+// --- Stops the timer --- //
       if(time === 0) {
         clearInterval(timerId);
         $display.html('Game Over');
         $play.html('Play Again');
         toggleBoard();
-        // $timer.addClass('ringing');
+        // $hideBoard();
+        // $timer.addClass('ringing'); //-- this adds a ringing animation --//
         console.log('Clear Interval Working!');
       }
-    }, 1000); // Stops the timer after 10 secons
-// timerIsRunning = true;
+    }, 1000); // --- Stops the timer after 10 seconds --- //
   }
-// ------------------------ Runs the PLAY button and timer ------------------//
+//--------------- Runs the PLAY button and starts the timer ------------------//
   $startBtn.on('click', startTimer);
+//------------------------------- Move the BALL ------------------------------//
 
-// ------------------------------ Move the BALL -----------------------------//
-  const $circle = $('.circle'); //the circle object
-
-  $(document).keydown(function(e) {
-    switch (e.which) {
-      case 37:
-        $circle.stop().css({
-          left: '-=100' //change number to set the amount of pixels the ball moves
-        }); //left arrow key
-        break;
-      case 38:
-        $circle.stop().css({
-          top: '-=100' //change number to set the amount of pixels the ball moves
-        }); //up arrow key
-        break;
-      case 39:
-        $circle.stop().css({
-          left: '+=100' //change number to set the amount of pixels the ball moves
-        }); //right arrow key
-        break;
-      case 40:
-        $circle.stop().css({
-          top: '+=100' //change number to set the amount of pixels the ball moves
-        }); //bottom arrow key
-        break;
-    }
-    console.log('Movement Works');
-  });
-
-// --------------------------- The play button ------------------------------//
-  const $play = $('button.play');
-
+  // $(document).keydown(function(e) {
+  //   switch (e.keyCode) {
+  //     case 37:
+  //       $circle.stop().css({
+  //         left: '-=100' //---This set the amount of pixels the ball moves---//
+  //       }); //left arrow key
+  //       break;
+  //     case 38:
+  //       $circle.stop().css({
+  //         top: '-=100' //---This set the amount of pixels the ball moves---//
+  //       }); //up arrow key
+  //       break;
+  //     case 39:
+  //       $circle.stop().css({
+  //         left: '+=100' //---This sets the amount of pixels the ball moves---//
+  //       }); //right arrow key
+  //       break;
+  //     case 40:
+  //       $circle.stop().css({
+  //         top: '+=100' //---This set the amount of pixels the ball moves---//
+  //       }); //bottom arrow key
+  //       break;
+  //   }
+  //   console.log('Movement Works');
+  // });
+//---------------------------- The play button -------------------------------//
   $play.on('click', () => {
-    $ball.addClass('circle');
-    // if $('.result').text('You win');
-    // } else {
-    //   $('.result').text('You lose');
-    // }
     console.log('Started');
   });
-
-// --------------------------- The reset button ------------------------------//
-  const $reset = $('button.reset');
-
+//---------------------------- The reset button ------------------------------//
   $reset.on('click', () => {
     time = 3;
     $timer.html(time);
+    $display.html('Ready?'); // ---reset display to READY again---//
     $result.text(''); // dispays win or lose message INCOMPLETE
-    // $startTimer.html(time); // FIX THIS PART
-    $timer.removeClass('active');
+    $timer.removeClass('active'); // ---reset timer to 3 seconds---//
     console.log('Restarted');
   });
-
-// ------------------------ The BALL function on CLICK -----------------------//
-  const $ball = $('.circle');
-
+//------------------------- The BALL function on CLICK -----------------------//
   $ball.on('click', () => {
-    console.log('Ball moved');
-    // $ball.appendTo('.destination');
+    console.log('Ball Clicked');
   });
+//------------- Block the edge so the player can't go through it -------------//
 
-// ------------ Block the edge so the player can't go through it ------------//
+//----- Create a 'You Won!' message when the player reaches destination ------//
 
-// ---- Create a 'You Won!' message when the player reaches destination -----//
+  // $play.on('click', () => {
+  // // $ball.addClass('circle');  // ---this is not necessary anymore--- //
+  // // if $('.result').text('You Won');
+  // // } else {
+  // //   $('.result').text('You Lost');
+  // // }
+  //   console.log('Started');
+  // });
 
+//-------------------- Create different difficulties -------------------------/
 
-// ------------------- Create different difficulties -------------------------//
-
-// ----------------------- Create hide board function ------------------------//
-
-// ----------------------- Hidding buttons and boards -----------------------//
-  function toggleBoard() {
-    $play.toggle();
+//------------------------ Hidding buttons and boards ------------------------//
+  function toggleBoard() { // not working yet
+    $play.toggle(); // not working yet
+    // $showBoard.toggle(); // hides the maze board
   }
 });
