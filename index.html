@@ -13,17 +13,13 @@
       <h1>MAZE RUNNER</h1>
     </header>
     <main>
-
-      <img src="images/field.png">
-
+      <img src="images/field.png" class="field">
+      <!-- <img src="images/sonic-tumbling.gif" class="sonic"> -->
         <div class="timer">3</div>
         <div class="display">Ready?</div>
-
-        <p class="result"></p>
-
         <ul class="board show hidden">
           <li class="wall edge-top edge-left">
-            <div class="ball"></div>
+            <!-- <div class="ball"></div> -->
           </li>
           <li class="wall edge-top"></li>
           <li class="wall edge-top edge-right"></li>
@@ -34,15 +30,15 @@
           <li class="wall edge-right"></li>
         </ul>
         <ul class="board show hidden">
-          <li class="wall edge-left edge-bottom"></li>
-          <li class="wall edge-bottom"></li>
-          <li class="wall edge-right edge-bottom"></li>
+          <li class="wall edge-left edge-down"></li>
+          <li class="wall edge-down"></li>
+          <li class="wall edge-right edge-down destination"></li>
         </ul>
     </main>
     <footer>
       <button class="play">Start</button>
       <button class="reset">Restart</button>
-
+      <p class="result">Result</p>
       <div class="score-board">Score: <span class="score">0</span>
     </div>
     </footer>

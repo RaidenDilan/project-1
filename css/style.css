@@ -24,6 +24,19 @@ li {
   background-color: rgb(120, 255, 0);
   border-color: black;
   border-width: thin;
+  position: relative;
+}
+
+li.ball:after {
+  content: '';
+  position: absolute;
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  background-color: red;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .timer {
@@ -78,17 +91,18 @@ div {
 
 .score-board {
   padding: 10px;
-  border: 1px solid black;
+  border: 3px solid black;
   position: absolute;
+  background-color: yellow;
   display: inline-block;
-  margin: 70px 50px;
+  margin: 60px 5px;
 }
 .result {
-  padding: 15px 40px;
-  border: 2px solid black;
-  margin: 400px 588px;
-  background-color: white;
-  color: black;
+  padding: 10px 10px;
+  border: 3px solid red;
+  margin: 5px 5px;
+  background-color: black;
+  color: white;
   /*float: left;*/
   /*width: 40px;*/
   /*height: 10px;*/
@@ -96,16 +110,16 @@ div {
   display: inline;
 }
 
-.ball {
+/*.ball {
   width: 50px;
   height: 50px;
-  background-color: red;
+  background-color: rgb(220,20,60);
   border-radius: 25px;
   position: absolute;
   bottom: 23px;
   right: 24px;
   border: 1px solid black;
-}
+}*/
 
 button.reset {
   /*display: inline-block;*/
@@ -148,13 +162,20 @@ footer {
   display: block;
 }
 
-img {
+img.field {
   width: 1200px;
   /*height: 600px;*/
   /*max-height: 1190px;*/
   position: absolute;
   /*margin: 0 auto;*/
   display: block;
+
+}
+
+img.sonic {
+  width: 60px;
+  height: 120px;
+  position: absolute;
 
 }
 

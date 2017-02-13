@@ -5,34 +5,46 @@ $(() => {
 
 //------ Reset the board if the player runs into a wall within the board -----//
 
-// //------------------ Create the walls/edges of the board ---------------------//
+//--------- Create the edges of the board and the arrow key function ---------//
   const $cells = $('li');
+  let currentIndex = 0; // ---lets the strt index to be 0--- //
+  $cells.eq(currentIndex).addClass('ball'); // ---adds a class of ball--- //
 
-  $Ball(e) {
-    curIndex = 0;
-    $cells.eq(curIndex).removeClass('ball');
-    $cells.eq(curIndex).hasClass('ball');
-    $cells.eq(curIndex).addClass('ball');
+  $(document).keydown(function(e) { //grabs the event listener
+    moveBall(e); // ---calls moveBall function--- //
+  });
+
+  function moveBall(e) {
+    $cells.removeClass('ball'); // ---removes the class of ball--- //
     switch (e.keyCode) {
-      $cells.removeClass('ball');
-      case 37:
-          curIndex: -=1 //left arrow key
+      case 37: //left arrow key
+        if ($cells.eq(currentIndex).hasClass('edge-left') ===  false) { // if the li has a class of edge-left it will equal to false because we want to block the layer from going through the edges
+          currentIndex--;
+        }
         break;
-      case 38:
-          curIndex: -=1 //up arrow key
+      case 38: //up arrow key
+        if ($cells.eq(currentIndex).hasClass('edge-top') ===  false) {
+          currentIndex = currentIndex - 3;
+        }
         break;
-      case 39:
-          curIndex: +=1 //right arrow key
+      case 39: //right arrow key
+        if ($cells.eq(currentIndex).hasClass('edge-right') ===  false) {
+          currentIndex++;
+        }
         break;
-      case 40:
-          curIndex: +=1 //bottom arrow key
+      case 40: //down arrow key
+        if ($cells.eq(currentIndex).hasClass('edge-down') ===  false) {
+          currentIndex = currentIndex + 3;
+        }
         break;
     }
+    $cells.eq(currentIndex).addClass('ball'); // ---adds a class ball to the arrow key destination--- //
+    console.log(currentIndex);
   }
 //--------------------------------- OBJECTS ----------------------------------//
   // const $circle = $('.circle');
-  // const $hideBoard = $('.hidden'); // hides board
-  // const $showBoard = $('.show'); // shows board
+  // const $hideBoard = $('.hidden'); // hides maze board
+  // const $showBoard = $('.show'); // shows maze board
   const $timer = $('.timer');
   const $display = $('.display');
   const $startBtn = $('.play');
@@ -40,24 +52,22 @@ $(() => {
   const $reset = $('button.reset');
   const $play = $('button.play');
   const $ball = $('.ball');
+  const $score = $('.score');
   let time = 3;
   let timerId = null;
+  let userScore = 0;
 
   function startTimer() {
-// Toggles the MAZE  board -- doesn't work yet
-    toggleBoard();
+    toggleBoard();  // Toggles the MAZE board -- doesn't work yet
     // $showBoard(); //shows board
     $timer.addClass('active');
 
-// --- Starts the timer --- //
-    timerId = setInterval(() => {
+    timerId = setInterval(() => {     // --- Starts the timer --- //
       time--;
-      // $reset();
       $timer.html(time);
       console.log('Set Interval Working!');
 
-// --- Stops the timer --- //
-      if(time === 0) {
+      if(time === 0) {      // --- Stops the timer --- //
         clearInterval(timerId);
         $display.html('Game Over');
         $play.html('Play Again');
@@ -66,66 +76,39 @@ $(() => {
         // $timer.addClass('ringing'); //-- this adds a ringing animation --//
         console.log('Clear Interval Working!');
       }
-    }, 1000); // --- Stops the timer after 10 seconds --- //
+    }, 1000); // --- Stops the timer after 1 seconds --- //
   }
 //--------------- Runs the PLAY button and starts the timer ------------------//
   $startBtn.on('click', startTimer);
-//------------------------------- Move the BALL ------------------------------//
-
-  // $(document).keydown(function(e) {
-  //   switch (e.keyCode) {
-  //     case 37:
-  //       $circle.stop().css({
-  //         left: '-=100' //---This set the amount of pixels the ball moves---//
-  //       }); //left arrow key
-  //       break;
-  //     case 38:
-  //       $circle.stop().css({
-  //         top: '-=100' //---This set the amount of pixels the ball moves---//
-  //       }); //up arrow key
-  //       break;
-  //     case 39:
-  //       $circle.stop().css({
-  //         left: '+=100' //---This sets the amount of pixels the ball moves---//
-  //       }); //right arrow key
-  //       break;
-  //     case 40:
-  //       $circle.stop().css({
-  //         top: '+=100' //---This set the amount of pixels the ball moves---//
-  //       }); //bottom arrow key
-  //       break;
-  //   }
-  //   console.log('Movement Works');
-  // });
 //---------------------------- The play button -------------------------------//
   $play.on('click', () => {
+    $display.html(''); // ---hides the ready display message--- //
     console.log('Started');
   });
 //---------------------------- The reset button ------------------------------//
   $reset.on('click', () => {
+    userScore = 0; // ---sets user score to 0--- //
     time = 3;
+    $score.html(userScore); // ---reset user score--- //
     $timer.html(time);
-    $display.html('Ready?'); // ---reset display to READY again---//
-    $result.text(''); // dispays win or lose message INCOMPLETE
+    $display.html('Ready?'); // ---resets display to READY---//
+    $result.text('Result!'); //--- dispays result in the result box ---//
     $timer.removeClass('active'); // ---reset timer to 3 seconds---//
     console.log('Restarted');
   });
 //------------------------- The BALL function on CLICK -----------------------//
-  $ball.on('click', () => {
-    console.log('Ball Clicked');
-  });
-//------------- Block the edge so the player can't go through it -------------//
-
-//----- Create a 'You Won!' message when the player reaches destination ------//
-
-  // $play.on('click', () => {
-  // // $ball.addClass('circle');  // ---this is not necessary anymore--- //
-  // // if $('.result').text('You Won');
-  // // } else {
-  // //   $('.result').text('You Lost');
-  // // }
-  //   console.log('Started');
+  // $ball.on('click', () => {
+  //   console.log('Ball Clicked');
   // });
+//----- Create a 'You Won!' message when the player reaches destination ------//
+  // const $winConditions = $('winConditions');
+  //
+  // function findWinner(ball) {
+  //
+  //   if (winConditions === currentIndex[8]) return 'You win';
+  //   if (winConditions[player2Choice].includes(player1Choice)) return 'You lose';
+  //   return 'Tie';
+  // }
 
 //-------------------- Create different difficulties -------------------------/
 
