@@ -16,7 +16,7 @@ li {
   float: left;
   margin: 0 auto;
   padding: 50px;
-  text-align: center;
+  /*text-align: center;*/
   position: relative;
   display: inline;
   width: 80px;
@@ -82,11 +82,6 @@ ul {
 main {
   margin: 0;
   display: inline-block;
-}
-
-div {
-  /*background-color: yellow;*/
-  /*color: black;*/
 }
 
 .score-board {
@@ -163,21 +158,22 @@ footer {
 }
 
 img.field {
-  width: 1200px;
-  /*height: 600px;*/
+  width: 1422px;
+  height: 830px;
   /*max-height: 1190px;*/
   position: absolute;
   /*margin: 0 auto;*/
-  display: block;
+  /*display: block;*/
 
 }
 
-img.sonic {
+/*img.sonic {
   width: 60px;
   height: 120px;
   position: absolute;
+  margin: 100px 100px;
 
-}
+}*/
 
 h1 {
   position: relative;
@@ -185,10 +181,14 @@ h1 {
   border: 5px solid red;
   padding: 10px;
   /*display: inline-block;*/
-  /*margin: 2px 2px;*/
+  /*margin: 0 600px;*/
+  /*width: 200px;*/
+  /*height: 100px;*/
   text-align: center;
   color: white;
   font-weight: bold;
+  font-size: 30px;
+  /*top: 50%;*/
 }
 
 .timer.active {
@@ -196,66 +196,6 @@ h1 {
   color: black;
 }
 
-.edge1 {
-  border: 2px solid black;
-  /*border-bottom: none;*/
-  /*border-right: none;*/
-}
-
-.edge2 {
-  border: 2px solid black;
-  /*border-bottom: none;*/
-  /*border-left: none;*/
-  /*border-right: none;*/
-}
-
-.edge3 {
-  border: 2px solid black;
-  /*border-bottom: none;*/
-  /*border-left: none;*/
-
-}
-
-.edge4 {
-  border: 2px solid black;
-  /*border-top: none;*/
-  /*border-bottom: none;*/
-  /*border-right: none;*/
-}
-
-.edge5 {
-  border: 2px solid black;
-  /*border-top: none;*/
-  /*border-bottom: none;*/
-  /*border-right: none;*/
-  /*border-left: none;*/
-}
-
-.edge6 {
-  border: 2px solid black;
-  /*border-top: none;*/
-  /*border-bottom: none;*/
-  /*border-left: none;*/
-}
-
-.edge7 {
-  border: 2px solid black;
-  /*border-top: none;*/
-  /*border-right: none;*/
-}
-
-.edge8 {
-  border: 2px solid black;
-  /*border-top: none;*/
-  /*border-right: none;*/
-  /*border-left: none;*/
-}
-
-.edge9 {
-  border: 2px solid black;
-  /*border-top: none;*/
-  /*border-left: none;*/
-}
 @media only screen and (max-width: 960px) {
 
 }

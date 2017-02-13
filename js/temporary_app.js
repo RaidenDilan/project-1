@@ -1,3 +1,8 @@
+// const $circle = $('.circle');
+// const $hideBoard = $('.hidden'); //hides maze board
+// const $showBoard = $('.show'); //shows maze board
+  // const $ball = $('.ball'); //no longer needed
+
 //------------------------------- Move the BALL ------------------------------//
 
 // $(document).keydown(function(e) {
