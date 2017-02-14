@@ -58,6 +58,7 @@ $(() => {
       }
     }, 1000); //the amount of milliseconds in a single second
   }
+
   //--------- Create the edges of the board and the arrow key function --------//
   const $cells = $('li');
   let currentIndex = 0; //lets the start at the index  0
@@ -68,28 +69,34 @@ $(() => {
   });
 
   function moveBall(e) {
-    e.preventDefault(); // prevents the window screen from moving with the arrow keys
+    // e.preventDefault(); // prevents the window screen from moving with the arrow keys
     $cells.removeClass('ball'); //removes the class of ball
     switch (e.keyCode) {
       case 37: //left arrow key
-        if (currentIndex%width !== 0) { //CORRECT
+        if (currentIndex%width !== 0) { // Can't go left
           currentIndex--;
         }
         break;
       case 38: //up arrow key
-        if (currentIndex<width === width) { //CORRECT
-          currentIndex = currentIndex - 3;
+        if (currentIndex > width-1) { // Can't go up
+          currentIndex -= width;
         }
+        // if (currentIndex < width === width) { // Can't go up
+        //   currentIndex = currentIndex - 3;
+        // }
         break;
       case 39: //right arrow key
-        if (currentIndex%width !== width-1) { //CORRECT
+        if (currentIndex%width !== width-1) { // Can't go right
           currentIndex++;
         }
         break;
       case 40: //down arrow key
-        if (currentIndex>$cells.length - width+1) { //
-          currentIndex = currentIndex + 3;
+        if ( currentIndex < ($cells.length - width)) {
+          currentIndex += width;
         }
+        // if (currentIndex > $cells.length !== (width+1)) { // Can't go down
+        //   currentIndex = currentIndex + 3;
+        // }
         break;
     }
     $cells.eq(currentIndex).addClass('ball'); //adds a class ball to the arrow key destination
@@ -146,7 +153,7 @@ $(() => {
   // const $level2 = [0,1,1,0,0,1,0,1,0,0,0,0]; //arrays for the level 2 gird (12 cells).
   // const $grid = $('ul'); //attaches the object to the unordered lists
   // width = 4;
-
+  //
   // $level2.forEach((cell) => {
   //   const $cell = $('<li>'); //creates the lists
   //   if (cell === 1) {
@@ -162,7 +169,7 @@ $(() => {
   // const $level3 = [0,1,0,1,0,1,0,1,0,0,0,0,0,0,0,1,0]; //arrays for the level 3 gird (17 cells).
   // const $grid = $('ul'); //attaches the object to the unordered lists
   // width = 5 // change this number
-
+  //
   // $level3.forEach((cell) => {
   //   const $cell = $('<li>'); //creates the lists
   //   if (cell === 1) {
