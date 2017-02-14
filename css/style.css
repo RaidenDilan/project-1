@@ -9,26 +9,6 @@ body {
   /*text-align: center;*/
 }
 
-/*ul.level1 {
-  position: relative;
-  display: inline-block;
-  width: 70px;
-  height: 70px;
-  border: 5px solid black;
-  margin-left: 0 300px;
-  background-color: red;
-}*/
-
-/*li.wall {
-  position: relative;
-  display: inline-block;
-  width: 70px;
-  height: 70px;
-  border: 5px solid black;
-  margin-left: 0 300px;
-  background-color: red;
-}*/
-
 li.wall {
   color: black;
   border: 1px solid black;
@@ -45,6 +25,14 @@ li.wall {
   border-width: thin;
 }
 
+ul {
+  margin: 0 200px;
+  float: left;
+  position: relative;
+  /*background-color: red;*/
+  /*color: black;*/
+}
+
 li {
 color: black;
 border: 1px solid black;
@@ -53,13 +41,19 @@ float: left;
 margin: 0 auto;
 padding: 50px;
 position: relative;
-display: inline-block;
+display: block;
 width: 80px;
 height: 80px;
 background-color: rgb(120, 255, 0);
 border-color: black;
 border-width: thin;
 }
+
+/*ul.ball {
+  height: 60px;
+  width: 60px;
+  background-color: red;
+}*/
 
 li.ball:after {
   content: '';
@@ -76,11 +70,11 @@ li.ball:after {
 .timer {
   height: 70px;
   width: 70px;
-  border: 3px solid black;
+  border: 2px solid black;
   position: relative;
   border-radius: 50%;
   font-size: 36px;
-  font-weight: bold;
+  /*font-weight: bold;*/
   text-align: center;
   line-height: 67px;
   color: black;
@@ -99,16 +93,8 @@ li.ball:after {
   /*line-height: 20px;*/
   border: 2px solid black;
   text-align: center;
-  font-weight: bold;
+  /*font-weight: bold;*/
   margin: -40px 600px;
-}
-
-ul {
-  margin: 70px 600px;
-  margin-left: 490px;
-  /*position: relative;*/
-  /*background-color: red;*/
-  /*color: black;*/
 }
 
 main {
@@ -118,18 +104,19 @@ main {
 
 .score-board {
   padding: 10px;
-  border: 3px solid black;
+  border: 2px solid black;
   position: absolute;
-  background-color: yellow;
+  /*background-color: yellow;*/
   display: inline-block;
   margin: 60px 5px;
+  color: black;
 }
 .result {
   padding: 10px 10px;
-  border: 3px solid red;
+  border: 2px solid black;
   margin: 5px 5px;
-  background-color: black;
-  color: white;
+  /*background-color: black;*/
+  color: black;
   /*float: left;*/
   /*width: 40px;*/
   /*height: 10px;*/
@@ -196,7 +183,12 @@ img.field {
   position: absolute;
   /*margin: 0 auto;*/
   /*display: block;*/
+}
 
+img.starter {
+  width: 1422px;
+  height: 830px;
+  position: relative;
 }
 
 /*img.sonic {
