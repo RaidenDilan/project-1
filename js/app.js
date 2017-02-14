@@ -1,4 +1,6 @@
 $(() => {
+//----------- Show instructions when the key 'I' is pressed and held ---------//
+
 //--------------------------------- OBJECTS ----------------------------------//
   const $timer = $('.timer');
   const $display = $('.display');
@@ -116,10 +118,36 @@ $(() => {
     // $play.toggle(); //NOT working yet
     // $showBoard.toggle(); //hides the maze board
   }
-//----------- Show instructions when the key 'I' is pressed and held ---------//
+//----------------------------LEVEL 1 DIFFICULTY------------------------------//
+  const $level1 = [0,0,0,0,1,0,0,1,0]; //arrays for the level 1 gird (9 cells).
+  const $cell = $('<li/>'); //creates the lists
+  const $grid = $('ul'); //attaches the object to the unordered lists
+
+  $level1.forEach((cell) => {
+    if (cell === 1) {
+      $cell.addClass('wall');
+    }
+    $cell.appendTo($grid);
+    console.log('Created Lists');
+  });
+//----------------------------LEVEL 2 DIFFICULTY------------------------------//
+  // const $level2 = [0,1,1,0,0,1,0,1,0,0,0,0]; //arrays for the level 2 gird (12 cells).
+  //
+  // $level2.forEach((cell) => {
+  //   if (cell === 1) {
+  //     $cell.addClass('wall');
+  //   }
+  //   $cell.appendTo($grid);
+  // });
+//----------------------------LEVEL 3 DIFFICULTY------------------------------//
+  // const $level3 = [0,1,0,1,0,1,0,1,0,0,0,0,0,0,0,1,0]; //arrays for the level 3 gird (17 cells).
+  //
+  // $level3.forEach((cell) => {
+  //   if (cell === 1) {
+  //     $cell.addClass('wall');
+  //   }
+  //   $cell.appendTo($grid);
+  // });
 
 //------ Reset the board if the player runs into a wall within the board -----//
-
-//-------------------- Create different difficulties -------------------------//
-
 });

@@ -30,3 +30,25 @@
 //   }
 //   console.log('Movement Works');
 // });
+
+
+// html
+
+// <ul class="board show hidden" id="level1">
+//   <!-- <li class="wall edge-top edge-left"> -->
+//   <!-- </li> -->
+//   <!-- <li class="wall edge-top"></li> -->
+//   <!-- <li class="wall edge-top edge-right"></li> -->
+// </ul>
+//
+// <!-- <ul class="board show hidden" id="level2"> -->
+//   <!-- <li class="wall edge-left"></li> -->
+//   <!-- <li class="wall edge5"></li> -->
+//   <!-- <li class="wall edge-right"></li> -->
+// <!-- </ul> -->
+//
+// <!-- <ul class="board show hidden" id="level3"> -->
+//   <!-- <li class="wall edge-left edge-down"></li> -->
+//   <!-- <li class="wall edge-down"></li> -->
+//   <!-- <li class="wall edge-right edge-down destination"></li> -->
+// <!-- </ul> -->

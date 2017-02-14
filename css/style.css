@@ -9,6 +9,11 @@ body {
   /*text-align: center;*/
 }
 
+#level1 {
+  /*position: absolute;*/
+  /*margin-right: 0 auto;*/
+}
+
 li {
   color: black;
   border: 1px solid black;
@@ -16,7 +21,6 @@ li {
   float: left;
   margin: 0 auto;
   padding: 50px;
-  /*text-align: center;*/
   position: relative;
   display: inline;
   width: 80px;
@@ -24,7 +28,6 @@ li {
   background-color: rgb(120, 255, 0);
   border-color: black;
   border-width: thin;
-  position: relative;
 }
 
 li.ball:after {
