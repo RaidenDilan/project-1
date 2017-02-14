@@ -9,12 +9,27 @@ body {
   /*text-align: center;*/
 }
 
-#level1 {
-  /*position: absolute;*/
-  /*margin-right: 0 auto;*/
-}
+/*ul.level1 {
+  position: relative;
+  display: inline-block;
+  width: 70px;
+  height: 70px;
+  border: 5px solid black;
+  margin-left: 0 300px;
+  background-color: red;
+}*/
 
-li {
+/*li.wall {
+  position: relative;
+  display: inline-block;
+  width: 70px;
+  height: 70px;
+  border: 5px solid black;
+  margin-left: 0 300px;
+  background-color: red;
+}*/
+
+li.wall {
   color: black;
   border: 1px solid black;
   list-style: none;
@@ -22,12 +37,28 @@ li {
   margin: 0 auto;
   padding: 50px;
   position: relative;
-  display: inline;
+  display: inline-block;
   width: 80px;
   height: 80px;
   background-color: rgb(120, 255, 0);
   border-color: black;
   border-width: thin;
+}
+
+li {
+color: black;
+border: 1px solid black;
+list-style: none;
+float: left;
+margin: 0 auto;
+padding: 50px;
+position: relative;
+display: inline-block;
+width: 80px;
+height: 80px;
+background-color: rgb(120, 255, 0);
+border-color: black;
+border-width: thin;
 }
 
 li.ball:after {
@@ -69,13 +100,11 @@ li.ball:after {
   border: 2px solid black;
   text-align: center;
   font-weight: bold;
-
-/*change the minus px*/
   margin: -40px 600px;
 }
 
 ul {
-  margin: 70px 100px;
+  margin: 70px 600px;
   margin-left: 490px;
   /*position: relative;*/
   /*background-color: red;*/

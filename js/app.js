@@ -1,5 +1,6 @@
 $(() => {
 //----------- Show instructions when the key 'I' is pressed and held ---------//
+  // const $startScreen = $('');
 
 //--------------------------------- OBJECTS ----------------------------------//
   const $timer = $('.timer');
@@ -36,7 +37,7 @@ $(() => {
   }
   //--------- Create the edges of the board and the arrow key function ---------//
   const $cells = $('li');
-  let currentIndex = 0; //lets the strt index to be 0
+  let currentIndex = 0; //lets the start at the index  0
   $cells.eq(currentIndex).addClass('ball'); //adds a class of ball
 
   $(document).keydown(function(e) { //grabs the event listener
@@ -120,33 +121,44 @@ $(() => {
   }
 //----------------------------LEVEL 1 DIFFICULTY------------------------------//
   const $level1 = [0,0,0,0,1,0,0,1,0]; //arrays for the level 1 gird (9 cells).
-  const $cell = $('<li/>'); //creates the lists
+
   const $grid = $('ul'); //attaches the object to the unordered lists
 
   $level1.forEach((cell) => {
+    const $cell = $('<li>'); //creates the lists
     if (cell === 1) {
-      $cell.addClass('wall');
+      $cell.addClass('wall'); //adds class of wall
     }
-    $cell.appendTo($grid);
-    console.log('Created Lists');
+    $cell.appendTo($grid); //appends the class of wall to the ul.
+    // console.log('Lists');
+    // console.log(cell);
+    // console.log($grid);
   });
 //----------------------------LEVEL 2 DIFFICULTY------------------------------//
   // const $level2 = [0,1,1,0,0,1,0,1,0,0,0,0]; //arrays for the level 2 gird (12 cells).
   //
   // $level2.forEach((cell) => {
+  //   const $cell = $('<li>'); //creates the lists
   //   if (cell === 1) {
-  //     $cell.addClass('wall');
+  //     $cell.addClass('wall'); //adds class of wall
   //   }
-  //   $cell.appendTo($grid);
+  //   $cell.appendTo($grid); //appends the class of wall to the ul.
+  //   // console.log('Lists');
+  //   // console.log(cell);
+  //   // console.log($grid);
   // });
 //----------------------------LEVEL 3 DIFFICULTY------------------------------//
   // const $level3 = [0,1,0,1,0,1,0,1,0,0,0,0,0,0,0,1,0]; //arrays for the level 3 gird (17 cells).
   //
   // $level3.forEach((cell) => {
+  //   const $cell = $('<li>'); //creates the lists
   //   if (cell === 1) {
-  //     $cell.addClass('wall');
+  //     $cell.addClass('wall'); //adds class of wall
   //   }
-  //   $cell.appendTo($grid);
+  //   $cell.appendTo($grid); //appends the class of wall to the ul.
+  //   // console.log('Lists');
+  //   // console.log(cell);
+  //   // console.log($grid);
   // });
 
 //------ Reset the board if the player runs into a wall within the board -----//
