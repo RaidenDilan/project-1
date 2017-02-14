@@ -27,11 +27,11 @@ h1 {
   font-size: 30px;
 }
 
-footer {
+img {
+  width: 1422px;
+  height: 830px;
+  position: absolute;
   margin: 0 auto;
-  text-align: center;
-  position: relative;
-  display: inline;
 }
 
 ul {
@@ -57,12 +57,27 @@ border-color: black;
 border-width: thin;
 }
 
+footer {
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  display: inline;
+}
+
+div.footer {
+  margin: 0 auto;
+  position: relative;
+  display: inline;
+
+}
+
 li.ball:after {
   content: '';
   position: absolute;
-  height: 60px;
-  width: 60px;
+  height: 50px;
+  width: 50px;
   border-radius: 50%;
+  border: 3px solid black;
   background-color: red;
   top: 50%;
   left: 50%;
@@ -85,14 +100,11 @@ li.wall {
   border-width: thin;
 }
 
-button.reset {
+.reset {
   display: inline;
   padding: 10px 10px;
   border-radius: 20px;
   background-color: red;
-  /*margin-top: 30px;
-  margin-right: 40px;
-  margin-left: 10px;*/
   margin: 0 auto;
   border: 1px solid black;
   position: relative;
@@ -101,7 +113,7 @@ button.reset {
   outline: none;
 }
 
-button.play {
+.play {
   display: inline;
   padding: 10px 20px;
   border-radius: 20px;
@@ -112,13 +124,6 @@ button.play {
   color: white;
   font-weight: bold;
   outline: none;
-}
-
-img.field {
-  width: 1422px;
-  height: 830px;
-  position: absolute;
-  margin: 0 auto;
 }
 
 .timer {
@@ -140,7 +145,7 @@ div.display {
   margin: 0 auto;
   color: black;
   position: relative;
-  display: inline;
+  display: block;
   border-radius: 20px;
   padding: 10px;
   border: 2px solid black;

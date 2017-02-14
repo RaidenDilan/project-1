@@ -5,151 +5,150 @@ $(() => {
   // const $startScreen = $('startScreen');
 
 //--------------------------------- OBJECTS ----------------------------------//
+
   const $timer = $('.timer');
   const $display = $('.display');
   const $startBtn = $('.play');
   const $result = $('.result');
   const $reset = $('button.reset');
-  const $play = $('button.play');
   const $score = $('.score');
-  let time = 3; //amount of seconds to finish the maze
+
+  let time = 10;
   let timerId = null;
-  let userScore = 0; //user score starts at 0
+  let userScore = 0;
   let width = 0;
 
 //----------------------------LEVEL 1 DIFFICULTY------------------------------//
-  const $level1 = [0,0,0,0,1,0,0,1,0]; //arrays for the level 1 gird (9 cells).
-  const $grid = $('ul'); //attaches the object to the unordered lists
+
+  const $level1 = [0,0,0,0,1,0,0,1,0];
+  const $grid = $('ul');
   width = 3;
 
   $level1.forEach((cell, index) => {
-    const $cell = $('<li>'); //creates the lists
+    const $cell = $('<li>');
     if (cell === 1) {
-      $cell.addClass('wall'); //adds class of wall
+      $cell.addClass('wall');
     }
     if(index === 0) {
       $cell.addClass('ball');
     }
-    $cell.appendTo($grid); //appends the class of wall to the ul.
+    $cell.appendTo($grid);
     // console.log('Lists');
     // console.log(cell);
     // console.log($grid);
   });
 
   function startTimer() {
-    // toggleBoard();  //Toggles the MAZE board - doesn't work yet
-    // $showBoard(); //shows maze board when game begins
     $timer.addClass('active');
+    $startBtn.detach('.play');
 
-    timerId = setInterval(() => { //Starts the timer
+    timerId = setInterval(() => {
       time--;
       $timer.html(time);
-      console.log('Set Interval Working!');
+      // console.log('Set Interval Working!');
 
-      if(time === 0) {  //Stops the timer
+      if(time === 0) {
         clearInterval(timerId);
         $result.html('Game Over');
-        $play.html('Play Again');
-        $reset.remove('button.reset');
-        $display.html('Another round?');
-        // toggleBoard();
-        // $hideBoard();
-        console.log('Clear Interval Working!');
+        // $startBtn.append('Start---');
+        $startBtn.html('Play Again');
+        $display.html('Try Again?');
+        // console.log('Clear Interval Working!');
       }
-    }, 1000); //the amount of milliseconds in a single second
+    }, 1000);
   }
 
-  //--------- Create the edges of the board and the arrow key function --------//
-  const $cells = $('li');
-  let currentIndex = 0; //lets the start at the index  0
-  $cells.eq(currentIndex).addClass('ball'); //adds a class of ball
+//--------------- Runs the PLAY button and starts the timer ------------------//
 
-  $(document).keydown(function(e) { //grabs the event listener
-    moveBall(e); //calls moveBall function
+  $startBtn.on('click', startTimer);
+
+//---------------------------- The play button -------------------------------//
+
+  $startBtn.on('click', () => {
+    $display.html('GO!');
+    // console.log('Started');
+  });
+
+  //--------- Create the edges of the board and the arrow key function --------//
+
+  const $cells = $('li');
+  let currentIndex = 0;
+  $cells.eq(currentIndex).addClass('ball');
+
+  $(document).keydown(function(e) {
+    moveBall(e);
   });
 
   function moveBall(e) {
-    // e.preventDefault(); // prevents the window screen from moving with the arrow keys
-    $cells.removeClass('ball'); //removes the class of ball
+    // e.preventDefault();
+    $cells.removeClass('ball');
     switch (e.keyCode) {
       case 37: //left arrow key
-        if (currentIndex%width !== 0) { // Can't go left
+        if (currentIndex%width !== 0) {
           currentIndex--;
         }
         break;
       case 38: //up arrow key
-        if (currentIndex > width-1) { // Can't go up
+        if (currentIndex > width-1) {
           currentIndex -= width;
         }
-        // if (currentIndex < width === width) { // Can't go up
+        // if (currentIndex < width === width) {
         //   currentIndex = currentIndex - 3;
         // }
         break;
       case 39: //right arrow key
-        if (currentIndex%width !== width-1) { // Can't go right
+        if (currentIndex%width !== width-1) {
           currentIndex++;
         }
         break;
       case 40: //down arrow key
-        if ( currentIndex < ($cells.length - width)) {
+        if (currentIndex < ($cells.length - width)) {
           currentIndex += width;
         }
-        // if (currentIndex > $cells.length !== (width+1)) { // Can't go down
+        // if (currentIndex > $cells.length !== (width+1)) {
         //   currentIndex = currentIndex + 3;
         // }
         break;
     }
-    $cells.eq(currentIndex).addClass('ball'); //adds a class ball to the arrow key destination
+    $cells.eq(currentIndex).addClass('ball');
     console.log(currentIndex);
   }
 
-//--------------- Runs the PLAY button and starts the timer ------------------//
-  $startBtn.on('click', startTimer);
-
-//---------------------------- The play button -------------------------------//
-  $play.on('click', () => {
-    $display.html(''); //hides the ready display message
-    console.log('Started');
-  });
-
 //---------------------------- The reset button ------------------------------//
+
   $reset.on('click', () => {
-    userScore = 0; //sets user score to 0
-    time = 3;
-    $score.html(userScore); //reset user score
-    $timer.html(time);
-    $display.html('Ready?'); //resets display to READY
-    $result.text('Reset Activated'); //dispays result in the result box ALSO this is linked to 'game over' result above
-    $timer.removeClass('active'); //reset timer to 3 seconds
-    $startBtn.html('Start'); //after reset button is pressed the start button display message resets to normal
-    console.log('Restarted');
+    userScore = 0;
+    time = 10;
+    clearInterval(timerId);
+    $score.html(userScore);
+    $display.html('Ready???');
+    $result.html('Reset Activated');
+    $timer.removeClass('active');
+    $startBtn.html('Start!!!');
+    console.log('Game Restarted');
   });
 
 // ----------------------------- Win Condition ------------------------------ //
+
   $startBtn.on('click', checkForMatch);
 
   function checkForMatch() {
+    const curIndex = 8;
     // const userProgress = currentIndex;
-    if (currentIndex === currentIndex) { //THIS LINE IS WRONG!
+    if (curIndex === curIndex) { //THIS LINE IS WRONG!
       $result.html('You Won!');
-      userScore++; //increases score by 1 if successful
+      userScore++;
     } else {
       $result.html('You Lost!');
-      userScore--; //decreases score by 1 if not successful
+      userScore--;
     }
     $score.html(userScore); //updates latest score
     console.log(userScore);
-    // console.log(userProgress);
   }
   // checkForMatch();
 
-//------------------------ Hidding buttons and boards ------------------------//
-  // function toggleBoard() { // not working yet
-    // $play.toggle(); //NOT working yet
-    // $showBoard.toggle(); //hides the maze board
-  // }
-
 //----------------------------LEVEL 2 DIFFICULTY------------------------------//
+
   // const $level2 = [0,1,1,0,0,1,0,1,0,0,0,0]; //arrays for the level 2 gird (12 cells).
   // const $grid = $('ul'); //attaches the object to the unordered lists
   // width = 4;
@@ -166,6 +165,7 @@ $(() => {
   // });
 
 //----------------------------LEVEL 3 DIFFICULTY------------------------------//
+
   // const $level3 = [0,1,0,1,0,1,0,1,0,0,0,0,0,0,0,1,0]; //arrays for the level 3 gird (17 cells).
   // const $grid = $('ul'); //attaches the object to the unordered lists
   // width = 5 // change this number
@@ -183,7 +183,6 @@ $(() => {
 
 //------ Reset the board if the player runs into a wall within the board -----//
 
+// ----------------------------Create sound effects---------------------------//
 
-
-// ----------------------------create sound effects---------------------------//
 });
