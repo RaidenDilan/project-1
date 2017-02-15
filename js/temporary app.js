@@ -2,7 +2,47 @@
 // const $hideBoard = $('.hidden'); //hides maze board
 // const $showBoard = $('.show'); //shows maze board
   // const $ball = $('.ball'); //no longer needed
-
+  //------------------------------BALL & ARROW KEYS-----------------------------//
+  // $(document).keydown(function(e) {
+  //   moveBall(e);
+  // });
+  //
+  // function moveBall(e) {
+  //   // console.log('inside moveBall()');
+  //   if(!e.metaKey) e.preventDefault();
+  //   $cells.removeClass('ball');
+  //   switch (e.keyCode) {
+  //     case 37: //left arrow key
+  //       if (currentIndex%width !== 0) {
+  //         currentIndex--;
+  //       }
+  //       break;
+  //     case 38: //up arrow key
+  //       if (currentIndex > width-1) {
+  //         currentIndex -= width;
+  //       }
+  //       // if (currentIndex < width === width) {
+  //       //   currentIndex = currentIndex - 3;
+  //       // }
+  //       break;
+  //     case 39: //right arrow key
+  //       if (currentIndex%width !== width-1) {
+  //         currentIndex++;
+  //       }
+  //       break;
+  //     case 40: //down arrow key
+  //       if (currentIndex < ($cells.length - width)) {
+  //         currentIndex += width;
+  //       }
+  //       // if (currentIndex > $cells.length !== (width+1)) {
+  //       //   currentIndex = currentIndex + 3;
+  //       // }
+  //       break;
+  //   }
+  //
+  //   $cells.eq(currentIndex).addClass('ball');
+  //   // console.log(currentIndex);
+  // }
 //------------------------------- Move the BALL ------------------------------//
 
 // $(document).keydown(function(e) {

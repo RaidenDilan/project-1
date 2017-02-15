@@ -1,13 +1,4 @@
 $(() => {
-//----------- Show instructions when the key 'I' is pressed and held ---------//
-// add an empty div that covers the whole screen
-// give the choice of difficulties to choose from
-// then hide the div to show the game
-
-  // const $startScreen = $('startScreen');
-
-//--------------------------------- OBJECTS ----------------------------------//
-
   const $timer = $('.timer');
   const $display = $('.display');
   const $startBtn = $('.play');
@@ -16,15 +7,14 @@ $(() => {
   const $score = $('.score');
   const $begin = $('.playgame');
   const destination = 8;
-
+  let $cells = null;
   let time = 3;
   let timerId = null;
   let userScore = 0;
   let width = 0;
   let level = null;
-
+  let currentIndex = 0;
 //------ Reset the board if the player runs into a wall within the board -----//
-
 //--------------------------- CHOOSE DIFFICULTY------------------------------//
   const $select = $('select');
   const $chosenDifficulty = $('#chosen-difficulty');
@@ -33,9 +23,7 @@ $(() => {
     // e.preventDefault();
     level = $(e.target).val();
     $chosenDifficulty.html(level);
-    // console.log();
   });
-
   $begin.on('click', buildGrid);
 //----------------------------LEVEL DIFFICULTY------------------------------//
   const level1 = [0,0,0,0,1,0,0,1,0];
@@ -44,27 +32,27 @@ $(() => {
 
   function buildGrid() {
     console.log('inside buildGrid()');
-    let gridWidth = null;
     let levelArray = [];
+    currentIndex = 0;
     const $grid = $('ul');
+    $grid.empty();
 
     switch(level) {
       case 'Easy':
         levelArray = level1;
-        gridWidth = 3;
+        width = 3;
         break;
       case 'Medium':
         levelArray = level2;
-        gridWidth = 4;
+        width = 4;
         break;
       case 'Hard':
         levelArray = level3;
-        gridWidth = 5;
+        width = 4;
         break;
     }
 
-    $grid.attr('data-width', gridWidth);
-    width = gridWidth;
+    $grid.attr('data-width', width);
 
     levelArray.forEach((cell, index) => {
       const $cell = $('<li>');
@@ -75,26 +63,23 @@ $(() => {
         $cell.addClass('ball');
       }
       $cell.appendTo($grid);
-      // console.log('Lists');
-      // console.log(cell);
-      // console.log($grid);
     });
+
+    $cells = $('li');
+    $cells.eq(currentIndex).addClass('ball');
   }
-
-  //--------------- Runs the PLAY button and starts the timer ------------------//
-
+  //--------------------------------TIMER------------------------------------//
   $startBtn.on('click', startTimer);
 
   function startTimer() {
-    // time = 3; //------------------------------------//
     $display.html('GO!');
+    $score.html(userScore);
     $timer.addClass('active');
     $startBtn.hide();
 
     timerId = setInterval(() => {
       time--;
       $timer.html(time);
-      // console.log('Set Interval Working!');
 
       if(time === 0) {
         clearInterval(timerId);
@@ -103,27 +88,20 @@ $(() => {
         $startBtn.html('Play Again');
         $display.html('Try Again?');
         $reset.hide();
-        // console.log('Clear Interval Working!');
       }
       if(time === 0) {
         time = 4;
       }
     }, 1000);
   }
-
-//--------- Create the edges of the board and the arrow key function --------//
-
-  const $cells = $('li');
-  let currentIndex = 0;
-  $cells.eq(currentIndex).addClass('ball');
-
+//------------------------------BALL & ARROW KEYS-----------------------------//
   $(document).keydown(function(e) {
     moveBall(e);
   });
 
   function moveBall(e) {
-    console.log('inside moveBall()');
-    // e.preventDefault(); //------------------------------------------//
+    // console.log('inside moveBall()');
+    if(!e.metaKey) e.preventDefault();
     $cells.removeClass('ball');
     switch (e.keyCode) {
       case 37: //left arrow key
@@ -135,9 +113,6 @@ $(() => {
         if (currentIndex > width-1) {
           currentIndex -= width;
         }
-        // if (currentIndex < width === width) {
-        //   currentIndex = currentIndex - 3;
-        // }
         break;
       case 39: //right arrow key
         if (currentIndex%width !== width-1) {
@@ -148,17 +123,13 @@ $(() => {
         if (currentIndex < ($cells.length - width)) {
           currentIndex += width;
         }
-        // if (currentIndex > $cells.length !== (width+1)) {
-        //   currentIndex = currentIndex + 3;
-        // }
         break;
     }
+
     $cells.eq(currentIndex).addClass('ball');
     // console.log(currentIndex);
   }
-
-//---------------------------- The reset button ------------------------------//
-
+//-------------------------------RESET BUTTON---------------------------------//
   $reset.on('click', () => {
     userScore = 0;
     time = 3;
@@ -169,15 +140,10 @@ $(() => {
     $result.html('Result:');
     $timer.removeClass('active');
     $startBtn.show();
-    // console.log('Game Restarted');
   });
-
-// ----------------------------- Win Condition ------------------------------ //
-
-  // $startBtn.on('click', winCondition);
-
+// ------------------------------WIN CONDITION------------------------------- //
   function winCondition() {
-    // console.log(destination);
+
     if (currentIndex === destination) {
       $result.html('You Won!');
       userScore++;
@@ -185,15 +151,24 @@ $(() => {
       $result.html('You Lost!');
       userScore--;
     }
-    $score.html(userScore); //updates latest score
+    $score.html(userScore);
     // console.log(userScore);
   }
-  winCondition();
-
-// ----------------------------Create sound effects---------------------------//
-  // const $audio = $('audio');
-  //
-  // $audio.on('click', () => {
-  //
-  // });
+  // winCondition();
+// -----------------------------------AUDIO----------------------------------//
+  const $audio = $('audio').get(0);
+  const $playaudio = $('.playaudio');
+  let h = 1;
+  $playaudio.on('click', (e) => {
+    if( h%2 !==0) {
+      $audio.play();
+      e.target.innerHTML = 'PAUSE AUDIO';
+      h+=1;
+    } else {
+      $audio.pause();
+      e.target.innerHTML = 'PLAY AUDIO';
+      h+=1;
+    }
+    // console.log(h);
+  });
 });
