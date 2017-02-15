@@ -39,6 +39,7 @@ ul {
   width: 350px;
   display: block;
   position: relative;
+  /*visibility: hidden;*/
 }
 
 li {
@@ -57,18 +58,47 @@ border-color: black;
 border-width: thin;
 }
 
-footer {
-  margin: 0 auto;
-  text-align: center;
-  position: relative;
-  display: inline;
-}
-
 div.footer {
   margin: 0 auto;
   position: relative;
   display: inline;
 
+}
+
+div.main-page {
+  margin: 0 auto;
+  background-color: black;
+  position: absolute;
+  display: inline;
+  color: white;
+  /*padding: 150px;*/
+  /*width: 1425px;
+  height: 830px;*/
+  /*font-size: 30px;*/
+  text-align: center;
+}
+
+label {
+  font-size: 20px;
+  color: hotpink;
+
+}
+
+form {
+  margin: 0 auto;
+  position: relative;
+  display: inline-block;
+}
+span#chosen-difficulty {
+  font-size: 20px;
+  color: yellow;
+}
+
+img.starter {
+  /*display: block;*/
+  width: 1425px;
+  height: 830px;
+  position: relative;
 }
 
 li.ball:after {
@@ -98,6 +128,16 @@ li.wall {
   background-color: rgb(120, 255, 0);
   border-color: black;
   border-width: thin;
+}
+
+.playgame {
+  font-size: 10px;
+  border-radius: 20px;
+  background-color: white;
+  padding: 5px;
+  font-weight: bold;
+  /*outline: none;*/
+  border: 2px solid hotpink;
 }
 
 .reset {
@@ -179,11 +219,12 @@ div.display {
   position: relative;
 }
 
-/*img.starter {
-  width: 1422px;
-  height: 830px;
+footer {
+  margin: 0 auto;
+  text-align: center;
   position: relative;
-}*/
+  display: inline;
+}
 
 @media only screen and (max-width: 960px) {
 
