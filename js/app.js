@@ -14,14 +14,15 @@ $(() => {
   const $result = $('.result');
   const $reset = $('.reset');
   const $score = $('.score');
-  // const $grid = $('ul');
-  // const $begin = $('.playgame'); //play button at the main page
+  const $begin = $('.playgame');
   const destination = 8;
 
   let time = 3;
   let timerId = null;
   let userScore = 0;
   let width = 0;
+  let level = null;
+
 //------ Reset the board if the player runs into a wall within the board -----//
 
 //--------------------------- CHOOSE DIFFICULTY------------------------------//
@@ -29,72 +30,66 @@ $(() => {
   const $chosenDifficulty = $('#chosen-difficulty');
 
   $select.on('change', (e) => {
-    const $value = $(e.target).val();
-    $chosenDifficulty.html($value);
-    // $begin.on('click');
-    // console.log($begin);
+    // e.preventDefault();
+    level = $(e.target).val();
+    $chosenDifficulty.html(level);
+    // console.log();
   });
-//----------------------------LEVEL 1 DIFFICULTY------------------------------//
 
-  const $level1 = [0,0,0,0,1,0,0,1,0];
-  const $grid = $('ul');
-  width = 3;
+  $begin.on('click', buildGrid);
+//----------------------------LEVEL DIFFICULTY------------------------------//
+  const level1 = [0,0,0,0,1,0,0,1,0];
+  const level2 = [0,1,1,0,0,1,0,1,0,0,0,0];
+  const level3 = [0,1,0,1,0,1,0,1,0,0,0,0,0,0,1,0];
 
-  $level1.forEach((cell, index) => {
-    const $cell = $('<li>');
-    if (cell === 1) {
-      $cell.addClass('wall');
+  function buildGrid() {
+    console.log('inside buildGrid()');
+    let gridWidth = null;
+    let levelArray = [];
+    const $grid = $('ul');
+
+    switch(level) {
+      case 'Easy':
+        levelArray = level1;
+        gridWidth = 3;
+        break;
+      case 'Medium':
+        levelArray = level2;
+        gridWidth = 4;
+        break;
+      case 'Hard':
+        levelArray = level3;
+        gridWidth = 5;
+        break;
     }
-    if(index === 0) {
-      $cell.addClass('ball');
-    }
-    $cell.appendTo($grid);
-    // console.log('Lists');
-    // console.log(cell);
-    // console.log($grid);
-  });
-//----------------------------LEVEL 2 DIFFICULTY------------------------------//
 
-  // const $level2 = [0,1,1,0,0,1,0,1,0,0,0,0]; //arrays for the level 2 gird (12 cells).
-  // width = 4;
-  //
-  // $level2.forEach((cell) => {
-  //   const $cell = $('<li>'); //creates the lists
-  //   if (cell === 1) {
-  //     $cell.addClass('wall'); //adds class of wall
-  //   }
-  //   $cell.appendTo($grid); //appends the class of wall to the ul.
-  //   // console.log('Lists');
-  //   // console.log(cell);
-  //   // console.log($grid);
-  // });
+    $grid.attr('data-width', gridWidth);
+    width = gridWidth;
 
-//----------------------------LEVEL 3 DIFFICULTY------------------------------//
-
-  // const $level3 = [0,1,0,1,0,1,0,1,0,0,0,0,0,0,0,1,0]; //arrays for the level 3 gird (17 cells).
-  // width = 5 // change this number
-  //
-  // $level3.forEach((cell) => {
-  //   const $cell = $('<li>'); //creates the lists
-  //   if (cell === 1) {
-  //     $cell.addClass('wall'); //adds class of wall
-  //   }
-  //   $cell.appendTo($grid); //appends the class of wall to the ul.
-  //   // console.log('Lists');
-  //   // console.log(cell);
-  //   // console.log($grid);
-  // });
-
+    levelArray.forEach((cell, index) => {
+      const $cell = $('<li>');
+      if (cell === 1) {
+        $cell.addClass('wall');
+      }
+      if(index === 0) {
+        $cell.addClass('ball');
+      }
+      $cell.appendTo($grid);
+      // console.log('Lists');
+      // console.log(cell);
+      // console.log($grid);
+    });
+  }
 
   //--------------- Runs the PLAY button and starts the timer ------------------//
 
   $startBtn.on('click', startTimer);
 
   function startTimer() {
-    time = 4; //------------------------------------//
+    // time = 3; //------------------------------------//
     $display.html('GO!');
     $timer.addClass('active');
-    $startBtn.hide('.play');
+    $startBtn.hide();
 
     timerId = setInterval(() => {
       time--;
@@ -110,9 +105,9 @@ $(() => {
         $reset.hide();
         // console.log('Clear Interval Working!');
       }
-      // if(time === 0) {
-      //   time = 4;
-      // }
+      if(time === 0) {
+        time = 4;
+      }
     }, 1000);
   }
 
@@ -127,6 +122,7 @@ $(() => {
   });
 
   function moveBall(e) {
+    console.log('inside moveBall()');
     // e.preventDefault(); //------------------------------------------//
     $cells.removeClass('ball');
     switch (e.keyCode) {
@@ -169,9 +165,10 @@ $(() => {
     clearInterval(timerId);
     $score.html(userScore);
     $display.html('Ready???');
+    console.log($display);
     $result.html('Result:');
     $timer.removeClass('active');
-    $startBtn.show('Start');
+    $startBtn.show();
     // console.log('Game Restarted');
   });
 
@@ -180,7 +177,7 @@ $(() => {
   // $startBtn.on('click', winCondition);
 
   function winCondition() {
-    console.log(destination);
+    // console.log(destination);
     if (currentIndex === destination) {
       $result.html('You Won!');
       userScore++;
@@ -194,5 +191,9 @@ $(() => {
   winCondition();
 
 // ----------------------------Create sound effects---------------------------//
-
+  // const $audio = $('audio');
+  //
+  // $audio.on('click', () => {
+  //
+  // });
 });

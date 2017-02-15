@@ -35,11 +35,15 @@ img {
 }
 
 ul {
-  margin: 150px 550px;
+  margin: 0 auto;
   width: 350px;
   display: block;
   position: relative;
   /*visibility: hidden;*/
+}
+
+ul[data-width='4'] {
+  width: 408px;
 }
 
 li {
@@ -69,7 +73,7 @@ div.main-page {
   margin: 0 auto;
   background-color: black;
   position: absolute;
-  display: inline;
+  /*display: inline;*/
   color: white;
   /*padding: 150px;*/
   /*width: 1425px;
@@ -130,13 +134,50 @@ li.wall {
   border-width: thin;
 }
 
+.playaudio {
+  padding: 5px;
+  margin: 0 auto;
+  display: inline-block;
+  position: relative;
+  background-color: white;
+  outline: none;
+  border: 2px solid black;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: bold;
+}
+.pauseaudio {
+  padding: 5px;
+  margin: 0 auto;
+  display: inline-block;
+  position: relative;
+  background-color: white;
+  outline: none;
+  border: 2px solid black;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.restartaudio {
+  padding: 5px;
+  margin: 0 auto;
+  display: inline-block;
+  position: relative;
+  background-color: white;
+  outline: none;
+  border: 2px solid black;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: bold;
+}
 .playgame {
   font-size: 10px;
   border-radius: 20px;
   background-color: white;
   padding: 5px;
   font-weight: bold;
-  /*outline: none;*/
+  outline: none;
   border: 2px solid hotpink;
 }
 
