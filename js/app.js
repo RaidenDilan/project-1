@@ -23,6 +23,7 @@ $(() => {
     // e.preventDefault();
     level = $(e.target).val();
     $chosenDifficulty.html(level);
+    $audio.play();
   });
   $begin.on('click', buildGrid);
 //----------------------------LEVEL DIFFICULTY------------------------------//
@@ -80,6 +81,7 @@ $(() => {
     timerId = setInterval(() => {
       time--;
       $timer.html(time);
+      $audio.play();
 
       if(time === 0) {
         clearInterval(timerId);

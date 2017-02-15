@@ -10,11 +10,12 @@
   </head>
   <body>
     <header>
-      <h1>MAZE RUNNER</h1>
+      <!-- <h1>MAZE RUNNER</h1> -->
       <img src="images/field.png" class="field">
       <!-- <img src="images/mazerunner.jpg" class="field"> -->
     </header>
     <main>
+      <h1>MAZE RUNNER</h1>
       <div class="main-page">
         <!-- <img src="images/maze runner.jpg" class="starter"> -->
         <form>
@@ -32,18 +33,19 @@
         <div class="timer">3</div>
         <div class="display">Ready?</div>
         <ul class="board"></ul>
-        <button class="play">Start</button>
-        <button class="reset">Restart</button>
-        <button class="playaudio">PLAY AUDIO</button>
-        <audio src="audio/main.mp3"></audio>
-        <p class="result">Result:</p>
-        <div class="score-board">Score: <span class="score"></span></div>
+      <div class="all">
+        <div class="control">
+          <button class="play">Start</button>
+          <button class="reset">Restart</button>
+          <button class="playaudio">PLAY AUDIO</button>
+          <audio src="audio/main.mp3"></audio>
+        </div>
+        <div class="status">
+          <p class="result">Result:</p>
+          <div class="score-board">Score: <span class="score"></span></div>
+        </div>
+      </div>
     </main>
-    <footer>
-      <!-- <div class="footer">
-        <p class="result">Result:</p>
-        <div class="score-board">Score: <span class="score"></span></div>
-      </div> -->
-    </footer>
+    <footer>Made by <span class="heart">&hearts;</span> Raiden @ <span class="GA">General Assembly</span></footer>
   </body>
 </html>
