@@ -8,61 +8,53 @@ $(() => {
   const $begin = $('.playgame');
   const $playaudio = $('.playaudio');
   let $cells = null;
-  let time = 10;
+  let time = 5;
   let timerId = null;
   let userScore = 0;
   let width = 0;
   let level = null;
   let currentIndex = 0;
-
-//------ Reset the board if the player runs into a wall within the board -----//
-
-
 //--------------------------- CHOOSE DIFFICULTY------------------------------//
   const $select = $('select');
   const $chosenDifficulty = $('#chosen-difficulty');
-
   $select.on('change', () => {
-    // e.preventDefault();
     level = $select.val();
     $chosenDifficulty.html(level);
     $begin.show();
-    // $audio.play(); //----------------------------------------------?
-    // $audio.html = ('PAUSE AUDIO');
   });
+  $begin.on('click', buildGrid);
   $begin.hide();
   $reset.hide();
   $startBtn.hide();
   $playaudio.hide();
-  $begin.on('click', buildGrid);
+  $score.html(userScore);
 //----------------------------LEVEL DIFFICULTY------------------------------//
   const level1 = [0,0,0,0,1,0,0,1,0];
-  // *       ==================
-  // *         0  |  0  |  0
-  // *       -----+-----+-----
-  // *         0  |  1  |  0
-  // *       -----+-----+-----
-  // *         0  |  1  |  0
-  // *       ==================
-  const level2 = [0,1,1,0,0,1,0,1,0,0,0,0];
-  // *       =======================
-  // *         0  |  1  |  1  |  0
-  // *       -----+-----+-----+-----
-  // *         0  |  1  |  0  |  1
-  // *       -----+-----+-----+-----
-  // *         0  |  0  |  0  |  0
-  // *       =======================
-  const level3 = [0,1,0,1,0,1,0,1,0,0,0,0,0,0,1,0];
-  // *       =======================
-  // *         0  |  1  |  0  |  1
-  // *       -----+-----+-----+-----
-  // *         0  |  1  |  0  |  1
-  // *       -----+-----+-----+-----
-  // *         0  |  0  |  0  |  0
-  // *       -----+-----+-----+-----
-  // *         0  |  0  |  1  |  0
-  // *       =======================
-
+  // *                     -----+-----+-----
+  // *                    |  0  |  0  |  0  |
+  // *                     -----+-----+-----
+  // *                    |  0  |  1  |  0  |
+  // *                     -----+-----+-----
+  // *                    |  0  |  1  |  0  |
+  // *                     -----+-----+-----
+  const level2 = [0,1,1,0,0,0,0,1,0,1,0,0];
+  // *                     -----+-----+-----+-----
+  // *                    |  0  |  1  |  1  |  0  |
+  // *                     -----+-----+-----+-----
+  // *                    |  0  |  0  |  0  |  1  |
+  // *                     -----+-----+-----+-----
+  // *                    |  0  |  1  |  0  |  0  |
+  // *                     -----+-----+-----+-----
+  const level3 = [0,1,0,1,0,0,0,0,0,1,1,0,1,1,1,0];
+  // *                     -----+-----+-----+------
+  // *                    |  0  |  1  |  0  |  1  |
+  // *                     -----+-----+-----+-----
+  // *                    |  0  |  0  |  0  |  0  |
+  // *                     -----+-----+-----+-----
+  // *                    |  0  |  1  |  1  |  0  |
+  // *                     -----+-----+-----+-----
+  // *                    |  1  |  1  |  1  |  0  |
+  // *                     -----+-----+-----+-----
   function buildGrid() {
     let levelArray = [];
     currentIndex = 0;
@@ -83,23 +75,18 @@ $(() => {
         width = 4;
         break;
     }
-
-    $begin.hide(); //-------------------------------Unhide it after game over?
-    $audio.play(); //----------------------------------------------?
+    $begin.hide();
+    $audio.play();
     $startBtn.show();
     $reset.show();
     $playaudio.show();
-    // $playaudio.html('PAUSE AUDIO'); //------------------------------still have to click it twice to pause audio
 
     $grid.attr('data-width', width);
 
-    levelArray.forEach((cell, index) => {
+    levelArray.forEach((cell) => {
       const $cell = $('<li>');
       if (cell === 1) {
         $cell.addClass('wall');
-      }
-      if(index === 0) {
-        $cell.addClass('ball');
       }
       $cell.appendTo($grid);
     });
@@ -118,6 +105,7 @@ $(() => {
     $startBtn.hide();
     $begin.hide();
     $reset.show();
+    buildGrid();
 
     timerId = setInterval(() => {
       time--;
@@ -131,22 +119,24 @@ $(() => {
         $startBtn.html('Play Again');
         $display.html('Try again or choose another difficulty');
         $result.html('Game Over!');
+        $score.html(userScore);
         $reset.hide();
         $begin.show();
         $audio.pause(); //------------------------ option to keep or remove
       }
       if(time === 0) {
-        time = 11;
+        time = 5;
       }
     }, 1000);
   }
-//------------------------------BALL & ARROW KEYS-----------------------------//
+//-----------------------BALL, ARROW KEYS, WIN CONDITION----------------------//
   $(document).keydown(function(e) {
     moveBall(e);
   });
 
   function moveBall(e) {
     if(!e.metaKey) e.preventDefault();
+    if(!$cells) return false; //------
     $cells.removeClass('ball');
     switch (e.keyCode) {
       case 37: //left arrow key
@@ -170,50 +160,36 @@ $(() => {
         }
         break;
     }
+    if($cells.eq(currentIndex).hasClass('wall')) {  //-----
+      currentIndex = 0; //-----
+      $display.html('Oops, you ran into a wall!');
+    }
+    $cells.eq(currentIndex).addClass('ball'); //-----
 
-    $cells.eq(currentIndex).addClass('ball');
-    winCondition();
+    if (currentIndex === $cells.length-1) { //-----
+      $result.html('You Won!'); //-----
+      $display.html('Try a different level?');  //-----
+      userScore++;  //-----
+      currentIndex = 0; //-----
+    }
   }
 //-------------------------------RESET BUTTON---------------------------------//
   $reset.on('click', () => {
     userScore = 0;
-    time = 10;
+    time = 5;
     clearInterval(timerId);
     $score.html(userScore);
     $display.html('Ready?');
-    // $result.html('Well Done!');
     $timer.removeClass('active');
     $startBtn.show();
-    $audio.pause(); //-----------------------------------------optin to keep or remove
+    // $audio.pause();
     $begin.show();
   });
-// ------------------------------WIN CONDITION------------------------------- //
-  function winCondition() {
-    const wins = 8;
-    const wall = ('li.wall');
-    if (currentIndex === wins) {
-      $result.html('You Won!');
-      $display.html('Try a different level?');
-      // clearInterval(timerId);
-      userScore++;
-      currentIndex = 0;
-    }
-    if (currentIndex === wall) {
-      $result.html('Try Again!');
-      // $result.html('Game Over!');
-      userScore--;
-      currentIndex = 0;
-    }
-    if (userScore !== userScore) {
-      $result.html('Game Over!');
-    }
-    $score.html(userScore);
-  }
 // -----------------------------------AUDIO----------------------------------//
   const $audio = $('audio').get(0);
   let hello = 1;
   $playaudio.on('click', () => {
-    if( hello%2 !==0) {
+    if( hello%2 === 0) {
       $audio.play();
       $playaudio.html('PAUSE AUDIO');
       hello+=1;
@@ -223,4 +199,9 @@ $(() => {
       hello+=1;
     }
   });
+//--------------------------MORE LOGIC----------------------------------------//
+
+//-change color of wall if the player runs into the wall.
+//--either keep the wall color or slowly hide it when the player goes back to the first cell.
+//---notify the player with a display message that they ran into a wall.
 });
