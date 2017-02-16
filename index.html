@@ -2,24 +2,24 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <!-- <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"> -->
     <title>Project 1</title>
     <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/style.css">
+    <!-- <link rel="stylesheet" href="animate.min.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="js/app.js" charset="utf-8"></script>
   </head>
   <body>
     <header>
-      <img src="images/field.png" class="field">
-      <!-- <img src="images/mazerunner.jpg" class="field"> -->
     </header>
     <main>
-      <h1>MAZE RUNNER</h1>
+      <h1 class="animated infinate fadeInDownBig">MAZE RUNNER</h1>
       <div class="main-page">
-        <!-- <img src="images/maze runner.jpg" class="starter"> -->
         <form>
           <label for="difficulty"></label>
-          <select class="difficulty" name="difficulty">
+          <select class="difficulty animated infinate fadeInDown" name="difficulty">
             <option value="Choose" disabled selected>Select a Difficulty</option>
             <option value="Easy">Level 1: Easy</option>
             <option value="Medium">Level 2: Medium</option>
@@ -27,10 +27,10 @@
         </select>
       </form>
       <button class="playgame">Play</button>
-      <p><span class="chosen">Chosen Difficulty: </span><span id="chosen-difficulty"></span></p>
+      <p class="animated infinate fadeInUp"><span class="chosen">Chosen Difficulty: </span><span id="chosen-difficulty"></span></p>
       </div>
-        <div class="timer">5</div>
-        <div class="display">Ready?</div>
+        <div class="timer animated infinate flash">5</div>
+        <div class="display animated infinate wobble">Ready?</div>
         <ul class="board"></ul>
       <div class="all">
         <div class="control">
@@ -39,12 +39,12 @@
           <button class="playaudio">PAUSE AUDIO</button>
           <audio src="audio/main.mp3"></audio>
         </div>
-        <div class="status">
+        <div class="status animated infinate flip">
           <p class="result">Result:</p>
           <div class="score-board">Score: <span class="score">0</span></div>
         </div>
       </div>
     </main>
-    <footer>Made by <span class="heart">&hearts;</span> Raiden @ <span class="GA">General Assembly</span></footer>
+    <footer class="animated infinate fadeInUpBig">Made by <span class="heart">&hearts;</span> Raiden @ <span class="GA">General Assembly</span></footer>
   </body>
 </html>

@@ -14,14 +14,18 @@ $(() => {
   let width = 0;
   let level = null;
   let currentIndex = 0;
+  const $grid = $('ul');
 //--------------------------- CHOOSE DIFFICULTY------------------------------//
   const $select = $('select');
   const $chosenDifficulty = $('#chosen-difficulty');
-  $select.on('change', () => {
+
+  function changeLevel() {
     level = $select.val();
     $chosenDifficulty.html(level);
     $begin.show();
-  });
+  }
+
+  $select.on('change', changeLevel);
   $begin.on('click', buildGrid);
   $begin.hide();
   $reset.hide();
@@ -58,7 +62,6 @@ $(() => {
   function buildGrid() {
     let levelArray = [];
     currentIndex = 0;
-    const $grid = $('ul');
     $grid.empty();
 
     switch(level) {
@@ -93,43 +96,51 @@ $(() => {
 
     $cells = $('li');
     $cells.eq(currentIndex).addClass('ball');
-    // $begin.hide(); //------------------------------------------?
   }
-  //--------------------------------TIMER------------------------------------//
+  //----------------------------------TIMER-----------------------------------//
   $startBtn.on('click', startTimer);
+
+  function reset() {
+    $startBtn
+      .show('Start')
+      .html('Play Again');
+    $display.html('Try again or choose another difficulty');
+    // $result.html('Result');
+    $result.hide();
+    $score.html(userScore);
+    $reset.hide();
+    $begin.show();
+    $grid.empty();
+  }
+
+  function countDown() {
+    time--;
+    $audio.play();
+    $timer.html(time);
+    // $audio.play()
+
+    if(time === 0) {
+      clearInterval(timerId);
+      reset();
+      // $audio.pause();
+    }
+    if(time === 0) {
+      time = 5;
+    }
+  }
 
   function startTimer() {
     $display.html('GO!');
     $score.html(userScore);
     $timer.addClass('active');
-    $startBtn.hide();
     $begin.hide();
     $reset.show();
     buildGrid();
+    $startBtn.hide();
 
-    timerId = setInterval(() => {
-      time--;
-      $timer.html(time);
-      $audio.play();
-
-      if(time === 0) {
-        clearInterval(timerId);
-        // $result.html('Game Over Dude!');
-        $startBtn.show('Start');
-        $startBtn.html('Play Again');
-        $display.html('Try again or choose another difficulty');
-        $result.html('Game Over!');
-        $score.html(userScore);
-        $reset.hide();
-        $begin.show();
-        $audio.pause(); //------------------------ option to keep or remove
-      }
-      if(time === 0) {
-        time = 5;
-      }
-    }, 1000);
+    timerId = setInterval(countDown, 1000);
   }
-//-----------------------BALL, ARROW KEYS, WIN CONDITION----------------------//
+//----------------------BALL, ARROW KEYS & WIN CONDITION----------------------//
   $(document).keydown(function(e) {
     moveBall(e);
   });
@@ -160,23 +171,32 @@ $(() => {
         }
         break;
     }
-    if($cells.eq(currentIndex).hasClass('wall')) {  //-----
-      currentIndex = 0; //-----
+    if($cells.eq(currentIndex).hasClass('wall')) {
+      $cells.eq(currentIndex).addClass('hit');
+      removeHitClass(currentIndex);
+
+      currentIndex = 0;
       $display.html('Oops, you ran into a wall!');
     }
-    $cells.eq(currentIndex).addClass('ball'); //-----
+    $cells.eq(currentIndex).addClass('ball');
 
-    if (currentIndex === $cells.length-1) { //-----
-      $result.html('You Won!'); //-----
-      $display.html('Try a different level?');  //-----
-      userScore++;  //-----
-      currentIndex = 0; //-----
+    if (currentIndex === $cells.length-1) {
+      $result.html('You Won!');
+      $display.html('Try a different level?');
+      userScore++;
+      currentIndex = 0;
     }
+  }
+
+  function removeHitClass(currentIndex) {
+    setTimeout(() => {
+      $cells.eq(currentIndex).removeClass('hit');
+    }, 100);
   }
 //-------------------------------RESET BUTTON---------------------------------//
   $reset.on('click', () => {
     userScore = 0;
-    time = 5;
+    time = 6;
     clearInterval(timerId);
     $score.html(userScore);
     $display.html('Ready?');
@@ -199,9 +219,4 @@ $(() => {
       hello+=1;
     }
   });
-//--------------------------MORE LOGIC----------------------------------------//
-
-//-change color of wall if the player runs into the wall.
-//--either keep the wall color or slowly hide it when the player goes back to the first cell.
-//---notify the player with a display message that they ran into a wall.
 });
