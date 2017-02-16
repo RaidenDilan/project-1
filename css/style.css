@@ -17,18 +17,20 @@ main {
 h1 {
   position: relative;
   /*background-color: none;*/
-  border: 3px solid black;
+  /*border: 3px solid black;*/
   padding: 10px;
   margin: 1px 1px 1px 1px;
   display: block;
   text-align: center;
   color: black;
   font-weight: bold;
-  font-size: 30px;
+  font-size: 40px;
+  font-family: perulin;
 }
 
 p {
   color: black;
+  padding: 10px;
 }
 img {
   width: 1424px;
@@ -46,10 +48,12 @@ ul {
 
 ul[data-width='3'] {
   width: 350px;
+  margin: 60px 555px 50px 555px;
 }
 
 ul[data-width='4'] {
   width: 409px;
+  margin: 60px 507px 50px 507px
 }
 
 li {
@@ -89,7 +93,7 @@ border-width: thin;
   height: 830px;*/
   /*font-size: 30px;*/
   text-align: center;
-  border: 3px solid black;
+  /*border: 3px solid black;*/
 }
 
 label {
@@ -105,6 +109,15 @@ form {
 }
 span#chosen-difficulty {
   font-size: 20px;
+  color: black;
+}
+
+select.difficulty {
+  background: none;
+  outline: none;
+  border: 2px solid white;
+  font-size: 15px;
+  text-align: center;
   color: white;
 }
 
@@ -156,26 +169,22 @@ li.wall {
   font-size: 10px;
   font-weight: bold;
 }
-/*.restartaudio {
-  padding: 5px;
-  margin: 0 auto;
-  display: inline-block;
+
+.chosen {
+  color: white;
+  font-size: 20px;
+  display: inline;
   position: relative;
-  background-color: white;
-  outline: none;
-  border: 2px solid black;
-  border-radius: 20px;
-  font-size: 10px;
-  font-weight: bold;
-}*/
+}
 
 .playgame {
-  font-size: 10px;
-  border-radius: 20px;
-  background-color: white;
+  font-size: 12px;
+  border-radius: 25px;
+  background: none;
   padding: 10px 10px;
   font-weight: bold;
   outline: none;
+  display: inline;
   border: 2px solid black;
 }
 
@@ -222,12 +231,12 @@ li.wall {
 }
 
 .display {
-  margin: 5px 675px 0 675px;
+  margin: 5px 640px 5px 640px;
   color: black;
   position: absolute;
   display: block;
   border-radius: 25px;
-  padding: 10px;
+  padding: 5px 50px 5px 50px;
   border: 2px solid black;
   text-align: center;
   /*font-weight: bold;*/
@@ -267,11 +276,11 @@ li.wall {
 .status {
   display: inline;
   /*position: relative;*/
-  margin: 0 0 0 621px;
+  margin: 20px 621px 20px 621px;
 }
 
 footer {
-  margin: 600px 0 0 0;
+  margin: 180px 0 0 0;
   text-align: center;
   position: relative;
   display: block;
