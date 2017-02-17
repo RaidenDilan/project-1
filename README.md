@@ -1,1 +1,3 @@
-# project-1
+# Project 1: Maze Runner
+
+1

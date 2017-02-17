@@ -118,7 +118,7 @@ $(() => {
 
   function countDown() {
     time--;
-    $audio.play(); // plays the audio when countDown starts.
+    // $audio.play(); // plays the audio when countDown starts.
     $timer.html(time);
     // $audio.play()
 
