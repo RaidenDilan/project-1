@@ -5,6 +5,7 @@ $(() => {
   const $result = $('.result');
   const $reset = $('.reset');
   const $score = $('.score');
+  const $scoreboard = $('.score-board');
   const $begin = $('.playgame');
   const $playaudio = $('.playaudio');
   let $cells = null;
@@ -32,9 +33,13 @@ $(() => {
   $begin.hide(); // hides the play button until difficulty is chosen.
   $reset.hide(); // hides the reset button uttil difficulty is chosen.
   $startBtn.hide(); // hides the  button uttil difficulty is chosen.
-  $playaudio.hide(); // hides the reset button uttil difficulty is chosen.
-  // $result.html('Result:!');
-  $score.html(userScore); //-------------
+  $playaudio.hide(); // hides the reset button until difficulty is chosen.
+  $result.hide(); // hides the result box until difficulty is chosen.
+  $score.hide(); // hides the score box until difficulty is chosen.
+  $scoreboard.hide(); // hides the score-board until difficulty is chosen.
+  $timer.hide(); // hides the timer until difficulty is chosen.
+  $display.hide(); // hides the display until difficulty is chosen.
+  $score.html(userScore); //
 //----------------------------LEVEL DIFFICULTY------------------------------//
   const level1 = [0,0,0,0,1,0,0,1,0];
   // *                     -----+-----+-----
@@ -82,11 +87,17 @@ $(() => {
         break;
     }
     $begin.hide(); // hides the play button when the grid appears.
-    $audio.play(); // pays the audio when the play button is clicked.
+    $timer.show(); // shows the timer when the buildGrid function is activated
+    $audio0.play(); // pays the audio when the play button is clicked.
     $startBtn.show(); // start button is made visisble after the level is selected and confirmed.
     $reset.show(); // reset button is made visisble after the level is selected and confirmed.
     $playaudio.show(); // play audio button is made vissible after the level is selected and confirmed.
+    $result.show(); // shows the result box after the buildGrid function is activated
     $result.html('Result:'); // sets the result bo back to default after it says game over and a different level is played
+    $score.show(); // shows the score ->0 after the buildGrid function
+    $scoreboard.show(); // shows the score-board after the buildGrid function is activated
+    $display.show(); // shows the display after the buildGrid function is activated
+
 
     $grid.attr('data-width', width);
 
@@ -109,17 +120,19 @@ $(() => {
       .show('Start') // when the reset button is clicked it displays the start button again.
       .html('Play Again'); // when the reset button is clicked it displays the start button again and sets the inerHTML to 'Play Again'.
     $display.html('Try again or try another level'); // changes the display message to the string.
-    $playaudio.htm('PAUSE AUDIO'); // after pressing to play again it sets the audio button html back to PAUSE AUDIO as the music will still be playing.
+    $playaudio.html(); // after pressing to play again it sets the audio button html back to PAUSE AUDIO as the music will still be playing.
     $score.html(userScore); // changes the userScore innerHTML to Score.
     $reset.hide(); // hides the reset button
     $begin.show(); //shows the play button is the level choice nav.
     $grid.empty(); // empties the grid when the reset button is clicked.
+    // $audio1.play();
     canMove = false; // when difficulty is chosen you are able to move - hence true.
   }
 
   function countDown() {
     time--;
     $timer.html(time);
+    $playaudio.html();
 
     if(time === 0) {
       clearInterval(timerId);
@@ -139,6 +152,7 @@ $(() => {
     $reset.show(); // shows the reset button when the startTimer begins to countdown.
     buildGrid(); // builds the grid when the start button is clicked.
     $startBtn.hide(); // hides the start button when the startTimer begins to countdown.
+    // $playaudio.html('PAUSE AUDIO');
     canMove = true; // after the level choice is chosen and the start/startimer button is clicked to play you are able to move - hence true.
 
     timerId = setInterval(countDown, 1000);
@@ -152,6 +166,7 @@ $(() => {
     if(!e.metaKey) e.preventDefault(); //while preventing the scroll navigation of the page, refreshing the page is allowed.
     if(!$cells) return false; // -------------
     $cells.removeClass('ball');
+    $audio1.play();
     if (canMove) {
       switch (e.keyCode) {
         case 37: //left arrow key
@@ -175,12 +190,13 @@ $(() => {
           }
           break;
       }
+      // $audio1.play();
     }
     if($cells.eq(currentIndex).hasClass('wall')) { // if the cells has a class of wall.
       $cells.eq(currentIndex).addClass('hit'); // this adds the class of hit to the cell.
       removeHitClass(currentIndex); // this removes the hit class after the player goes back to the begining of the maze - to currentIndex.
-      currentIndex = 0;
-      $display.html('Oops, you ran into a wall!');
+      currentIndex = 0; //puts player back to the begining of the maze when a wall is hit.
+      $display.html('Oops, you ran into a wall!'); //displays message in the display when you've git a wall.
     }
     $cells.eq(currentIndex).addClass('ball'); // adds a class of wall to the chosen cells.
 
@@ -189,7 +205,6 @@ $(() => {
       // $display.html('Try again or try another level');
       canMove = false; //after the player reaches the final destination the player is forbidden to move freely around the maze until the the play again button is clicked.
       userScore = time; // adds the remaining time to the scoreboard.
-      // currentIndex = 0;
     }
   }
 
@@ -208,17 +223,20 @@ $(() => {
     $timer.removeClass('active');
     $startBtn.show(); // shows the start button again after the reset button is clicked.
     $begin.show(); // shows the play button in the choose difficulty nav.
+    // $audio1.play();
+    currentIndex = 0;
   });
 // -----------------------------------AUDIO----------------------------------//
-  const $audio = $('audio').get(0); // 0 = to 1 track
+  const $audio0 = $('audio').get(0); // 0 = track 1
+  const $audio1 = $('audio').get(1);
   let hello = 1;
   $playaudio.on('click', () => {
     if( hello%2 === 0) {
-      $audio.play();
+      $audio0.play();
       $playaudio.html('PAUSE AUDIO');
       hello+=1;
     } else {
-      $audio.pause();
+      $audio0.pause();
       $playaudio.html('PLAY AUDIO');
       hello+=1;
     }
