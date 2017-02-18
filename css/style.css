@@ -11,9 +11,9 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
 }
+
 main {
   margin: 0 auto;
-
 }
 
 @font-face {
@@ -37,12 +37,12 @@ p {
   padding: 10px;
 }
 
-img {
+/*img {
   width: 1424px;
-  height: 888px;
+  height: 860px;
   position: absolute;
   margin: 0 auto;
-}
+}*/
 
 ul {
   margin: 0 505px 0 505px;
@@ -280,10 +280,11 @@ form {
   font-size: 20px;
 }
 
-.GA {
+.ga {
   width: 35px;
   height: 30px;
   bottom: 18px;
+  margin:0px 0px -5px 3px;
 }
 
 .at {
@@ -310,8 +311,8 @@ footer {
 @media only screen and (max-width: 640px) {
 
   main h1 {
-    font-size: 50px;
-    margin-top: 60px;
+    font-size: 35px;
+    margin-top: 0 auto;
   }
 
   main {
@@ -327,8 +328,8 @@ footer {
     text-align: center;
     padding: 5px 0;
     font-family: century, fantasy;
-    font-size: 12px;
-    margin: 0px 20px 0px 0px;
+    font-size: 15px;
+    /*margin: 0px 20px 0px 0px;*/
   }
 
   footer .raiden {
@@ -343,20 +344,14 @@ footer {
     font-size: 15px;
   }
 
-  .GA {
-    width: 22px;
-    height: 22px;
-  }
-
   ul[data-width='3'] {
-    width: 250px;
-    margin: 15px 185px;
+    width: 210px;
+    margin: 5px auto;
   }
 
   ul[data-width='4'] {
-    width: 300px;
-    /*margin: 15px 145px;*/
-    margin: 0px 0px 0px 145px;
+    width: 285px;
+    margin: 5px auto;
   }
 
   li {
@@ -364,6 +359,14 @@ footer {
     width: 70px;
     height: 70px;
   }
+
+  .ga {
+    width: 22px;
+    height: 22px;
+    bottom: 6px;
+    margin: 0px 0px -5px 3px;
+  }
+
   .wall {
     padding: 10px;
     width: 70px;
@@ -371,61 +374,101 @@ footer {
   }
 
   .status {
-    font-size: 20px;
-    margin: 10px 0px 60px 20px;
+    margin: 10px auto;
+    font-size: 15px;
     text-align: center;
   }
 
   .difficulty {
-    margin-top: 20px;
+    margin: 0 auto;
+    border: 1px solid white;
+    font-size: 12px;
+    text-align: center;
+    outline: none;
+  }
+
+  .chosen {
+    color: white;
+    font-size: 15px;
+    display: inline;
+    position: relative;
   }
 
   .timer {
-    /*visibility: hidden;*/
-    margin: 105px 0px 0px 250px;
-    /*position: absolute;*/
-    /*margin: 70px 0px 0px 455px;*/
+    margin: 0 auto;
+    height: 40px;
+    width: 40px;
+    line-height: 40px;
+    border-radius: 50%;
+    border: 1px solid black;
+    font-size: 30px;
+    /*position: relative;*/
   }
 
   .display {
-    margin: 5px 0px 5px 235px;
-    /*visibility: hidden;*/
-    /*position: absolute;*/
+    margin: 2px auto;
+    width: 20%;
+    border-radius: 25px;
+    display: block;
+    padding: 5px 5px 5px 5px;
+    text-align: center;
+    animation: pulse 5s infinate;
+    border: 1px solid black;
     /*margin: 150px 0px 0px 440px;*/
   }
 
+  .playgame {
+    margin: 5px 5px 5px 5px;
+    font-weight: bold;
+    font-size: 10px;
+    padding: 5px 10px;
+  }
+
   .play {
-    margin: 10px 0px 10px 0px;
-    /*margin: -260px 0px 0px 13px;*/
-    /*position: absolute;*/
+    padding: 6px;
+    font-size: 10px;
+    margin: 5px auto;
   }
 
   .reset {
-  margin: 0px 0px 0px 0px;
-  /*margin: -215px 0px 0px 16px;*/
-  /*position: absolute;*/
+  padding: 6px;
+  font-size: 10px;
+  margin: 5px auto;
   }
 
   .playaudio {
-    margin: 10px 0px 10px 0px;
-    /*margin: -170px 0px 0px 2px;*/
-    /*position: absolute;*/
+    padding: 6px;
+    font-size: 10px;
+    margin: 5px auto;
+  }
+
+  #chosen-difficulty {
+    font-size: 15px;
+    color: black;
   }
 
   .result {
-  margin: 10px 0px 10px 0px;
+  margin: 10px 10px 10px 10px;
+  border: 1px solid black;
+  position: relative;
+  display: inline;
+  padding: 5px 5px;
   /*margin: -115px 0px 0px -263px;*/
   /*position: absolute;*/
   }
 
   .score-board {
-  margin: 0px 0px 0px 0px;
+  margin: 10px 10px 10px 10px;
+  border: 1px solid black;
+  position: relative;
+  display: inline;
+  padding: 5px 5px;
   /*margin: -65px 0px 0px -267px;*/
   /*position: absolute;*/
   }
 
   .control {
-    margin: 0px 9px 0px 15px;
+    margin: 5px auto;
     text-align: center;
     clear: both;
   }

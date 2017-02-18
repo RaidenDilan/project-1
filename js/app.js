@@ -33,6 +33,7 @@ $(() => {
   $reset.hide(); // hides the reset button uttil difficulty is chosen.
   $startBtn.hide(); // hides the  button uttil difficulty is chosen.
   $playaudio.hide(); // hides the reset button uttil difficulty is chosen.
+  // $result.html('Result:!');
   $score.html(userScore); //-------------
 //----------------------------LEVEL DIFFICULTY------------------------------//
   const level1 = [0,0,0,0,1,0,0,1,0];
@@ -52,7 +53,7 @@ $(() => {
   // *                    |  0  |  1  |  0  |  0  |
   // *                     -----+-----+-----+-----
   const level3 = [0,1,0,1,0,0,0,0,0,1,1,0,1,1,1,0];
-  // *                     -----+-----+-----+------
+  // *                     -----+-----+-----+-----
   // *                    |  0  |  1  |  0  |  1  |
   // *                     -----+-----+-----+-----
   // *                    |  0  |  0  |  0  |  0  |
@@ -67,15 +68,15 @@ $(() => {
     $grid.empty(); // the grid is emptied until the level is chosen.
 
     switch(level) {
-      case 'Easy':
+      case 'Level 1':
         levelArray = level1;
         width = 3; // width of the board is 3x3
         break;
-      case 'Medium':
+      case 'Level 2':
         levelArray = level2;
         width = 4; // width of the board is 4x3
         break;
-      case 'Hard':
+      case 'Level 3':
         levelArray = level3;
         width = 4; // width of the board is 4x4
         break;
@@ -85,6 +86,7 @@ $(() => {
     $startBtn.show(); // start button is made visisble after the level is selected and confirmed.
     $reset.show(); // reset button is made visisble after the level is selected and confirmed.
     $playaudio.show(); // play audio button is made vissible after the level is selected and confirmed.
+    $result.html('Result:'); // sets the result bo back to default after it says game over and a different level is played
 
     $grid.attr('data-width', width);
 
@@ -106,9 +108,8 @@ $(() => {
     $startBtn
       .show('Start') // when the reset button is clicked it displays the start button again.
       .html('Play Again'); // when the reset button is clicked it displays the start button again and sets the inerHTML to 'Play Again'.
-    $display.html('Try again or choose another level'); // changes the display message to the string.
-    // $result.html('Result');
-    // $result.hide();
+    $display.html('Try again or try another level'); // changes the display message to the string.
+    $playaudio.htm('PAUSE AUDIO'); // after pressing to play again it sets the audio button html back to PAUSE AUDIO as the music will still be playing.
     $score.html(userScore); // changes the userScore innerHTML to Score.
     $reset.hide(); // hides the reset button
     $begin.show(); //shows the play button is the level choice nav.
@@ -118,15 +119,12 @@ $(() => {
 
   function countDown() {
     time--;
-    // $audio.play(); // plays the audio when countDown starts.
     $timer.html(time);
-    // $audio.play()
 
     if(time === 0) {
       clearInterval(timerId);
       reset();
-      $result.html('You Won!'); // display the result to the player when the player reaches the final destination.
-      // $audio.pause();
+      $result.html('Game Over!'); // display the result to the player when the the timer runs out whether the player completes the maze or not
     }
     if(time === 0) {
       time = 6; // if play again is clicked this sets the timer back to defult.
@@ -187,8 +185,8 @@ $(() => {
     $cells.eq(currentIndex).addClass('ball'); // adds a class of wall to the chosen cells.
 
     if (currentIndex === $cells.length-1) { // sets the cells.length-1 to ever level 1, 2, 3.
-      // $result.html('You Won!');
-      $display.html('Try a different level?');
+      $result.html('You Won!'); // display a message in the result box when the player completes the maze until the timer runs out.
+      // $display.html('Try again or try another level');
       canMove = false; //after the player reaches the final destination the player is forbidden to move freely around the maze until the the play again button is clicked.
       userScore = time; // adds the remaining time to the scoreboard.
       // currentIndex = 0;
@@ -209,7 +207,6 @@ $(() => {
     $display.html('Ready?'); // displays a message in the display bar.
     $timer.removeClass('active');
     $startBtn.show(); // shows the start button again after the reset button is clicked.
-    // $audio.pause();
     $begin.show(); // shows the play button in the choose difficulty nav.
   });
 // -----------------------------------AUDIO----------------------------------//
