@@ -56,12 +56,17 @@ ul[data-width='3'] {
 
 ul[data-width='4'] {
   width: 409px;
-  margin: 15px auto 50px;
+  margin: 15px auto;
 }
 
 ul[data-width='5'] {
   width: 510px;
-  margin: 15px auto 50px;
+  margin: 15px auto;
+}
+
+ul[data-width='6'] {
+  width: 510px;
+  margin: 15px auto;
 }
 
 li {
@@ -367,7 +372,12 @@ footer {
 
   ul[data-width='5'] {
     width: 300px;
-    margin: 5px auto 50px;
+    margin: 5px auto;
+  }
+
+  ul[data-width='6'] {
+    width: 300px;
+    margin: 15px auto;
   }
 
   li {
