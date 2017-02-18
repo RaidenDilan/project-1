@@ -486,7 +486,7 @@ footer {
   }
 
   .result {
-  margin: 10px 10px 10px 10px;
+  margin: 10px 60px 10px 10px;
   border: 1px solid black;
   position: relative;
   display: inline;
@@ -494,7 +494,7 @@ footer {
   }
 
   .score-board {
-  margin: 10px 10px 10px 10px;
+  margin: 10px 10px 10px 60px;
   border: 1px solid black;
   position: relative;
   display: inline;
