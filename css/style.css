@@ -329,7 +329,6 @@ footer {
     padding: 5px 0;
     font-family: century, fantasy;
     font-size: 15px;
-    /*margin: 0px 20px 0px 0px;*/
   }
 
   footer .raiden {
@@ -402,7 +401,6 @@ footer {
     border-radius: 50%;
     border: 1px solid black;
     font-size: 30px;
-    /*position: relative;*/
   }
 
   .display {
@@ -414,7 +412,6 @@ footer {
     text-align: center;
     animation: pulse 5s infinate;
     border: 1px solid black;
-    /*margin: 150px 0px 0px 440px;*/
   }
 
   .playgame {
@@ -453,8 +450,6 @@ footer {
   position: relative;
   display: inline;
   padding: 5px 5px;
-  /*margin: -115px 0px 0px -263px;*/
-  /*position: absolute;*/
   }
 
   .score-board {
@@ -463,8 +458,6 @@ footer {
   position: relative;
   display: inline;
   padding: 5px 5px;
-  /*margin: -65px 0px 0px -267px;*/
-  /*position: absolute;*/
   }
 
   .control {
