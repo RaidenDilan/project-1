@@ -6,7 +6,7 @@ html, * {
 
 body {
   background-image: url('../images/field.png');
-  min-height: 100vh;
+  min-height: 58.5vh;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -65,7 +65,12 @@ ul[data-width='5'] {
 }
 
 ul[data-width='6'] {
-  width: 510px;
+  width: 615px;
+  margin: 15px auto;
+}
+
+ul[data-width='7'] {
+  width: 615px;
   margin: 15px auto;
 }
 
@@ -82,7 +87,7 @@ width: 80px;
 height: 80px;
 background-color: rgb(120, 255, 0);
 border-color: black;
-border-width: thin;
+/*border-width: thin;*/
 }
 
 label {
@@ -155,12 +160,12 @@ form {
 
 .playaudio {
   padding: 10px;
-  margin: 10px 10px 10px 10px;
+  margin: 10px 0px 10px 0px;
   display: inline;
   position: relative;
   background-color: white;
   outline: none;
-  border: 2px solid black;
+  border: 1px solid black;
   border-radius: 20px;
   font-size: 12px;
   font-weight: bold;
@@ -189,7 +194,7 @@ form {
   padding: 10px 10px;
   border-radius: 20px;
   background-color: red;
-  margin: 10px 10px 10px 10px;
+  margin: 10px 0px 10px 0px;
   border: 1px solid black;
   position: relative;
   font-size: 12px;
@@ -203,18 +208,13 @@ form {
   padding: 10px 20px;
   border-radius: 20px;
   background-color: dodgerblue;
-  margin: 10px 10px 10px 10px;
+  margin: 10px 0px 10px 0px;
   border: 1px solid black;
   position: relative;
   color: white;
   font-weight: bold;
   font-size: 12px;
   outline: none;
-}
-
-.raiden {
-  font-size: 20px;
-  color: rgb(15, 30, 200);
 }
 
 .timer.active {
@@ -254,7 +254,7 @@ form {
 
 .score-board {
   padding: 10px 10px;
-  border: 2px solid black;
+  border: 1px solid black;
   position: relative;
   background-color: yellow;
   font-weight: bold;
@@ -265,7 +265,7 @@ form {
 
 .result {
   padding: 10px 10px;
-  border: 2px solid black;
+  border: 1px solid black;
   margin: 10px 10px 10px 10px;
   background-color: yellow;
   font-weight: bold;
@@ -285,21 +285,26 @@ form {
   text-align: center;
 }
 
+.raiden {
+  font-size: 15px;
+  color: rgb(15, 30, 200);
+}
+
 .heart {
   color: red;
-  font-size: 20px;
+  font-size: 12px;
 }
 
 .ga {
-  width: 35px;
-  height: 30px;
+  width: 29px;
+  height: 25px;
   bottom: 18px;
   margin:0px 0px -5px 3px;
 }
 
 .at {
   font-weight: bold;
-  font-size: 20px;
+  font-size: 15px;
   margin: 0 auto;
 }
 
@@ -312,6 +317,7 @@ footer {
   text-align: center;
   padding: 5px 0;
   font-family: century, fantasy;
+  font-size: 12px;
 }
 
 @media only screen and (max-width: 960px) {
@@ -319,7 +325,12 @@ footer {
 }
 
 @media only screen and (max-width: 640px) {
-
+  body {
+    min-height: 100vh;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
   h1 {
     font-size: 30px;
     margin-top: 0 auto;
@@ -354,36 +365,41 @@ footer {
   }
 
   .ga {
-    width: 22px;
-    height: 22px;
+    width: 18px;
+    height: 16px;
     bottom: 6px;
-    margin: 0px 0px -5px 3px;
+    margin: 0px 0px -4px 3px;
   }
 
   ul[data-width='3'] {
-    width: 180px;
+    width: 110px;
     margin: 5px auto;
   }
 
   ul[data-width='4'] {
-    width: 240px;
+    width: 200px;
     margin: 5px auto;
   }
 
   ul[data-width='5'] {
-    width: 300px;
+    width: 250px;
     margin: 5px auto;
   }
 
   ul[data-width='6'] {
     width: 300px;
-    margin: 15px auto;
+    margin: 5px auto;
+  }
+
+  ul[data-width='7'] {
+    width: 300px;
+    margin: 5px auto;
   }
 
   li {
     padding: 10px;
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
   }
 
   p {
@@ -393,8 +409,8 @@ footer {
 
   .wall {
     padding: 10px;
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
   }
 
   .status {
