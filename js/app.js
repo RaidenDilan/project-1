@@ -124,37 +124,37 @@ $(() => {
       case 'Level 1':
         levelArray = level1;
         width = 3; // width of the board is 3x3
-        time = 5; // set time of 5 seconds for level 5
+        time = 6; // set time of 5 seconds for level 5
         break;
       case 'Level 2':
         levelArray = level2;
         width = 4; // width of the board is 4x3
-        time = 5; // set time of 5 seconds for level 5
+        time = 6; // set time of 5 seconds for level 5
         break;
       case 'Level 3':
         levelArray = level3;
         width = 4; // width of the board is 4x4
-        time = 10; // set time of 10 seconds for level 5
+        time = 11; // set time of 10 seconds for level 5
         break;
       case 'Level 4':
         levelArray = level4;
         width = 5; // width of the board is 5x4
-        time = 15; // set time of 10 seconds for level 4
+        time = 16; // set time of 10 seconds for level 4
         break;
       case 'Level 5':
         levelArray = level5;
         width = 5; // width of the board is 5x5
-        time = 20; // set time of 15 secondsfor level 5
+        time = 21; // set time of 15 secondsfor level 5
         break;
       case 'Level 6':
         levelArray = level6;
         width = 6; // width of the board is 6x5
-        time = 25; // set time of 21 secondsfor level 5
+        time = 26; // set time of 21 secondsfor level 5
         break;
       case 'Level 7':
         levelArray = level7;
         width = 6; // width of the board is 6x6
-        time = 30; // set time of 26 secondsfor level 5
+        time = 31; // set time of 26 secondsfor level 5
         break;
     }
     $begin.hide(); // hides the play button when the grid appears.
@@ -299,6 +299,7 @@ $(() => {
     $score.html(userScore); //sets score numbrr back to 0.
     $display.html('Ready?'); // displays a message in the display bar.
     $timer.removeClass('active');
+    $result.html('Result:');
     $startBtn.show(); // shows the start button again after the reset button is clicked.
     $begin.show(); // shows the play button in the choose difficulty nav.
     currentIndex = 0; // puts the player back to cell 0 when the reset button is clicked.
