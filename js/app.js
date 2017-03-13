@@ -159,7 +159,7 @@ $(() => {
     }
     $begin.hide(); // hides the play button when the grid appears.
     $timer.show(); // shows the timer when the buildGrid function is activated
-    $audio0.play(); // pays the audio when the play button is clicked.
+    $audio0.play(); // plays the audio when the play button is clicked.
     $startBtn.show(); // start button is made visisble after the level is selected and confirmed.
     $reset.show(); // reset button is made visisble after the level is selected and confirmed.
     $playaudio.show(); // play audio button is made vissible after the level is selected and confirmed.
@@ -197,6 +197,7 @@ $(() => {
     $grid.empty(); // empties the grid when the reset button is clicked.
     $begin.hide(); // hides the play button when the maze timer has run down.
     canMove = false; // when difficulty is chosen you are able to move - hence true.
+    userScore = time;
   }
 
   function countDown() {
@@ -207,7 +208,8 @@ $(() => {
     if(time === 0) {
       clearInterval(timerId);
       reset(); // runs the reset function
-      $result.html('Game Over!'); // display the result to the player when the the timer runs out whether the player completes the maze or not.
+      $result.html(); // display the result to the player when the the timer runs out whether the player completes the maze or not.
+      // $result.html('Game Over!');
     }
     if(time === 0) {
       time = 7; // if play again is clicked this sets the timer back to 6 seconds
@@ -216,14 +218,15 @@ $(() => {
 
   function startTimer() {
     $display.html('GO!'); // displays the message 'GO!' when the start button is cliked.
-    $score.html(userScore); //-----------------
+    $score.html(userScore); //
     $timer.addClass('active');
     $begin.hide(); // hides the play button when startimer begins to countdown.
     $reset.show(); // shows the reset button when the startTimer begins to countdown.
     buildGrid(); // builds the grid when the start button is clicked.
     $startBtn.hide(); // hides the start button when the startTimer begins to countdown.
     canMove = true; // after the level choice is chosen and the start/startimer button is clicked to play you are able to move - hence true.
-    // userScore = time; //i want to keep the score to add it to the next maze level.
+    // userScore = time; //if i want to keep the score to add it to the next maze level.
+    $audio0.pause();
 
     timerId = setInterval(countDown, 1000);
   }
@@ -273,16 +276,17 @@ $(() => {
       $cells.eq(currentIndex).addClass('hit'); // this adds the class of hit to the cell.
       removeHitClass(currentIndex); // this removes the hit class after the player goes back to the begining of the maze - to currentIndex.
       currentIndex = 0; //puts player back to the begining of the maze when a wall is hit.
+      $audio2.play();
       $display.html('Oops, you ran into a wall!'); //displays message in the display when you've git a wall.
       // $audio2.play(); // plays a sound that you hit a wall
     }
     $cells.eq(currentIndex).addClass('ball'); // adds a class of wall to the chosen cells.
 
-    if (currentIndex === $cells.length-1) { // sets the cells.length-1 to ever level 1, 2, 3.
+    if (currentIndex === $cells.length-1) { // sets the cells.length-1 to ever level 1,2,3,4,5,6,7
       $result.html('You Won!'); // display a message in the result box when the player completes the maze until the timer runs out.
       canMove = false; //after the player reaches the final destination the player is forbidden to move freely around the maze until the the play again button is clicked.
       userScore = time; // adds the remaining time to the scoreboard.
-      // end the maze when sonic reaches the end of the maze ---------???
+      time = true; // Ends the maze level when sonic reaches the destination.
     }
   }
 
@@ -296,7 +300,7 @@ $(() => {
     userScore = 0; // sets the scoreboard to 0.
     time = 7; // sets the timer back to 5 seconds.
     clearInterval(timerId); // clears the timerId
-    $score.html(userScore); //sets score numbrr back to 0.
+    $score.html(userScore); //sets score number back to 0.
     $display.html('Ready?'); // displays a message in the display bar.
     $timer.removeClass('active');
     $result.html('Result:');
@@ -305,8 +309,9 @@ $(() => {
     currentIndex = 0; // puts the player back to cell 0 when the reset button is clicked.
   });
 // -----------------------------------AUDIO-----------------------------------//
-  const $audio0 = $('audio').get(0); // 0 = track 1 order goes by the first audio tag inside the index.html
-  const $audio1 = $('audio').get(1); // 1 = track 2 order goes by the second audio tag inside the index.html
+  const $audio0 = $('.ending').get(0); // 0 = track 1 order goes by the first audio tag inside the index.html
+  const $audio1 = $('.ring').get(0); // 1 = track 2 order goes by the second audio tag inside the index.html
+  const $audio2 = $('.death').get(0); // 2 = track 3 order goes by the second audio tag inside the index.html
   let hello = 1; //---------
 
   $playaudio.on('click', () => {
