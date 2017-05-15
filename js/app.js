@@ -319,12 +319,24 @@ $(() => {
       $audio0.play();
       $playaudio.html('PAUSE AUDIO');
       hello+=1;
-      console.log('Audio Playing');
+      // console.log('Audio Playing');
     } else {
       $audio0.pause();
       $playaudio.html('PLAY AUDIO');
       hello+=1;
-      console.log('Audio Paused');
+      // console.log('Audio Paused');
     }
   });
+
+  var hammertime = new Hammer(myElement, myOptions);
+  hammertime.on('tap', function(ev) {
+    console.log(ev);
+  });
+
+  hammertime.get('pinch').set({ enable: true });
+  hammertime.get('rotate').set({ enable: true });
+
+  hammertime.get('pan').set({ direction: Hammer.DIRECTION_ALL });
+  hammertime.get('swipe').set({ direction: Hammer.DIRECTION_VERTICAL });
+
 });
