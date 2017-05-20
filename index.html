@@ -2,8 +2,8 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- meta link for responsive CSS -->
-    <title>Project 1: The Game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sonic Maze</title>
     <link rel="icon" type="image/png" href="images/blacksonic.png"/>
     <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/style.css">
@@ -13,8 +13,11 @@
   </head>
   <body>
     <main>
+      
       <h1 class="animated infinate fadeInDownBig">SONIC MAZE</h1>
+
       <div class="main-page">
+
         <form>
           <label for="difficulty"></label>
           <select class="difficulty animated infinate fadeInDown" name="difficulty">
@@ -28,34 +31,36 @@
             <option value="Level 7">Level 7</option>
         </select>
       </form>
-      <button class="playgame animated infinate tada">Play</button>
+
+      <button class="playgame animated infinate tada">PLAY</button>
       <p class="animated infinate fadeInUp"><span class="chosen">Chosen Difficulty: </span><span id="chosen-difficulty"></span></p>
+
       </div>
         <div class="timer animated infinate flash"></div>
-        <div class="display animated infinate wobble">Ready?</div>
+        <div class="display animated infinate wobble">READY?</div>
         <ul class="board"></ul>
+
       <div class="all">
+
         <div class="control">
-          <button class="play animated infinate zoomIn">START</button>
-          <button class="reset animated infinate zoomIn">RESTART</button>
-          <button class="playaudio animated infinate zoomIn">PAUSE AUDIO</button>
-          <!-- <audio src="audio/title theme.mp3"></audio> -->
-          <audio class="ending" src="audio/ending.mp3">
-            <!-- <source src="./audio/ending.mp3" type="mp3/"> -->
+          <button class="play">START</button>
+          <button class="reset">RESTART</button>
+          <button class="playaudio">PAUSE AUDIO</button>
+          <audio class="ending" src="./audio/ending.mp3">
           </audio>
-          <audio class="ring" src="audio/ring.mp3">
-            <!-- <source src="./audio/ring.mp3" type="mp3/"> -->
+          <audio class="ring" src="./audio/ring.mp3">
           </audio>
-          <audio class="death" src="audio/death.mp3">
-            <!-- <source src="./audio/ring.mp3" type="mp3/"> -->
+          <audio class="death" src="./audio/death.mp3">
           </audio>
         </div>
+
         <div class="status">
-          <p class="result">Result:</p>
-          <p class="score-board">Score: <span class="score">0</span></p>
+          <p class="result">RESULT:</p>
+          <p class="score-board">SCORE: <span class="score">0</span></p>
         </div>
+
       </div>
     </main>
-    <footer class="animated infinate fadeInUpBig">Made by <span class="heart">&hearts;</span> <span class="raiden">Raiden</span> <span class="at">@</span><img class="ga "src="./images/galogo.png"></footer>
+    <footer>Made by <span class="heart">&hearts;</span> <span class="raiden">Raiden</span> <span class="at">@</span><img class="ga "src="./images/galogo.png"></footer>
   </body>
 </html>

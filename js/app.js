@@ -180,7 +180,7 @@ $(() => {
     });
 
     $cells = $('li'); // $cells variable equals to the the string of 'li'.
-    $cells.eq(currentIndex).addClass('ball'); // add a class of 'ball' to the currentIndex where the player moves it to.
+    $cells.eq(currentIndex).addClass('sonic'); // add a class of 'sonic' to the currentIndex where the player moves it to.
   }
   //----------------------------------TIMER-----------------------------------//
   $startBtn.on('click', startTimer);
@@ -188,7 +188,7 @@ $(() => {
   function reset() {
     $startBtn
       .show('Start') // when the reset button is clicked it displays the start button again.
-      .html('Play Again'); // when the reset button is clicked it displays the start button again and sets the inerHTML to 'Play Again'.
+      .html('PLAY AGAIN'); // when the reset button is clicked it displays the start button again and sets the inerHTML to 'Play Again'.
     $display.html('Try another level'); // changes the display message to the string.
     $playaudio.html('PAUSE AUDIO'); // after pressing to play again it sets the audio button html back to PAUSE AUDIO as the music will still be playing.
     $score.html(userScore); // changes the userScore innerHTML to Score.
@@ -230,7 +230,7 @@ $(() => {
 
     timerId = setInterval(countDown, 1000);
   }
-//----------------------BALL, ARROW KEYS & WIN CONDITION----------------------//
+//----------------------SONIC, ARROW KEYS & WIN CONDITION----------------------//
   $(document).keydown(function(e) {
     moveBall(e);
   });
@@ -239,7 +239,7 @@ $(() => {
     // something to disable the command key
     if(!e.metaKey) e.preventDefault(); //while preventing the scroll navigation of the page, refreshing the page is allowed.
     if(!$cells) return false; // -------------
-    $cells.removeClass('ball'); // removes the class of ball from the previus cell to the next
+    $cells.removeClass('sonic'); // removes the class of sonic from the previus cell to the next
     if (canMove) {
       switch (e.keyCode) {
         case 37: //left arrow key
@@ -280,7 +280,7 @@ $(() => {
       $display.html('Oops, you ran into a wall!'); //displays message in the display when you've git a wall.
       // $audio2.play(); // plays a sound that you hit a wall
     }
-    $cells.eq(currentIndex).addClass('ball'); // adds a class of wall to the chosen cells.
+    $cells.eq(currentIndex).addClass('sonic'); // adds a class of wall to the chosen cells.
 
     if (currentIndex === $cells.length-1) { // sets the cells.length-1 to ever level 1,2,3,4,5,6,7
       $result.html('You Won!'); // display a message in the result box when the player completes the maze until the timer runs out.
@@ -319,24 +319,10 @@ $(() => {
       $audio0.play();
       $playaudio.html('PAUSE AUDIO');
       hello+=1;
-      // console.log('Audio Playing');
     } else {
       $audio0.pause();
       $playaudio.html('PLAY AUDIO');
       hello+=1;
-      // console.log('Audio Paused');
     }
   });
-
-  var hammertime = new Hammer(myElement, myOptions);
-  hammertime.on('tap', function(ev) {
-    console.log(ev);
-  });
-
-  hammertime.get('pinch').set({ enable: true });
-  hammertime.get('rotate').set({ enable: true });
-
-  hammertime.get('pan').set({ direction: Hammer.DIRECTION_ALL });
-  hammertime.get('swipe').set({ direction: Hammer.DIRECTION_VERTICAL });
-
 });
