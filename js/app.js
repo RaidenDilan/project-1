@@ -164,7 +164,7 @@ $(() => {
     $reset.show(); // reset button is made visisble after the level is selected and confirmed.
     $playaudio.show(); // play audio button is made vissible after the level is selected and confirmed.
     $result.show(); // shows the result box after the buildGrid function is activated
-    $result.html('Result:'); // sets the result bo back to default after it says game over and a different level is played
+    $result.html('RESULT:'); // sets the result bo back to default after it says game over and a different level is played
     $score.show(); // shows the score ->0 after the buildGrid function
     $scoreboard.show(); // shows the score-board after the buildGrid function is activated
     $display.show(); // shows the display after the buildGrid function is activated
