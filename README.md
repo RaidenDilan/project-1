@@ -2,7 +2,7 @@
 
 <h1>Project 1: Maze Runner</h1>
 
-[Launch Game!](https://afternoon-woodland-32796.herokuapp.com)
+[Launch Game!](https://sonicmazegame.herokuapp.com)
 
 In this version of Sonic Maze, the player will have to complete the maze and avoid the hidden walls.
 
